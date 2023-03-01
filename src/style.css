@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+
+    .cartograph-cf-regular {
+        font-family: cartograph-cf-regular;
+    }
+
+    .cartograph-cf-regular-italic {
+        font-family: cartograph-cf-regular-italic;
+    }
+
+    @font-face {
+        font-family: cartograph-cf-regular;
+        src: url("./assets/font/cartograph-cf-regular.otf");
+    }
+
+    @font-face {
+        font-family: cartograph-cf-regular-italic;
+        src: url("./assets/font/cartograph-cf-regular-italic.otf");
+    }
+}
