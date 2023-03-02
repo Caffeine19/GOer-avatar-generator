@@ -1,24 +1,22 @@
 <!-- eslint-disable vue/multi-word-component-names -->
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps<{
+  color?: { primaryColor?: string; secondaryColor?: string; backgroundColor: string }
+}>()
+</script>
 <template>
-  <svg
-    width="524"
-    height="524"
-    viewBox="0 0 524 524"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg viewBox="0 0 524 524" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect width="524" height="524" fill="#D3D3D3" />
     <g id="Avatar">
       <g id="Property 1=Default" clip-path="url(#clip0_0_1)">
-        <rect width="524" height="524" fill="#D2F4F0" />
+        <rect :fill="color?.backgroundColor || '#D2F4F0'" width="524" height="524" />
         <g id="Group 9">
           <g id="Shadow" opacity="0.2">
             <g id="Group 4">
               <path
                 id="Ellipse 6"
                 d="M446.383 199.007C427.226 208.663 403.011 205.071 391.95 192.344C380.888 179.618 386.008 161.24 405.165 151.584C424.321 141.929 448.537 145.521 459.598 158.247C470.659 170.973 465.539 189.352 446.383 199.007Z"
-                fill="#61BCE2"
+                :fill="color?.primaryColor || '#61BCE2'"
                 stroke="black"
                 stroke-width="6.37119"
               />
@@ -36,7 +34,7 @@
               <path
                 id="Ellipse 6_2"
                 d="M96.7417 178.119C106.729 197.104 128.529 208.244 144.924 204.308C161.319 200.372 167.825 182.437 157.838 163.451C147.851 144.465 126.051 133.326 109.656 137.262C93.2603 141.198 86.7546 159.133 96.7417 178.119Z"
-                fill="#61BCE2"
+                :fill="color?.primaryColor || '#61BCE2'"
                 stroke="black"
                 stroke-width="6.37119"
               />
@@ -54,7 +52,7 @@
               <path
                 id="Vector 1"
                 d="M86.6527 536.676V540.151H90.1279H464.87H468.345V536.676V284.692C468.345 251.64 456.033 218.5 429.063 198.387C322.355 118.81 201.433 136.764 112.109 209.75C94.9867 223.741 86.6527 245.222 86.6527 266.953V536.676Z"
-                fill="#61BCE2"
+                :fill="color?.primaryColor || '#61BCE2'"
                 stroke="black"
                 stroke-width="6.95038"
               />
@@ -131,7 +129,7 @@
               <path
                 id="Ellipse 6_3"
                 d="M431.323 199.007C412.167 208.663 387.951 205.071 376.89 192.345C365.829 179.618 370.948 161.24 390.105 151.584C409.261 141.929 433.477 145.521 444.538 158.247C455.6 170.973 450.48 189.352 431.323 199.007Z"
-                fill="#61BCE2"
+                :fill="color?.primaryColor || '#61BCE2'"
                 stroke="black"
                 stroke-width="6.37119"
               />
@@ -142,14 +140,14 @@
                 rx="12.5277"
                 ry="14.8672"
                 transform="matrix(0.656007 0.754754 -0.89298 0.450096 413.311 156.529)"
-                fill="#90D0EB"
+                :fill="color?.secondaryColor || '#90D0EB'"
               />
             </g>
             <g id="LeftEar">
               <path
                 id="Ellipse 6_4"
                 d="M81.6826 178.119C91.6698 197.104 113.469 208.244 129.865 204.308C146.26 200.372 152.766 182.437 142.779 163.451C132.792 144.465 110.992 133.326 94.5966 137.262C78.2012 141.198 71.6955 159.133 81.6826 178.119Z"
-                fill="#61BCE2"
+                :fill="color?.primaryColor || '#61BCE2'"
                 stroke="black"
                 stroke-width="6.37119"
               />
@@ -160,21 +158,21 @@
                 rx="12.5277"
                 ry="14.8672"
                 transform="matrix(-0.972371 0.23344 0.465552 0.88502 121.016 153.999)"
-                fill="#90D0EB"
+                :fill="color?.secondaryColor || '#90D0EB'"
               />
             </g>
             <g id="Main">
               <path
                 id="Vector 1_2"
                 d="M71.5937 523.973V527.449H75.0688H446.914H450.39V523.973V271.677C450.39 238.797 438.215 205.814 411.463 185.697C305.535 106.043 185.479 124.014 96.8188 197.051C79.8389 211.039 71.5937 232.419 71.5937 254.038V523.973Z"
-                fill="#61BCE2"
+                :fill="color?.primaryColor || '#61BCE2'"
                 stroke="black"
                 stroke-width="6.95038"
               />
               <path
                 id="Vector 2_2"
                 d="M160.211 524C160.211 389.915 355.401 362.114 363.8 524H160.211Z"
-                fill="#90D0EB"
+                :fill="color?.secondaryColor || '#90D0EB'"
               />
               <g id="LeftEye">
                 <path

@@ -7,7 +7,9 @@ import Editor from './components/Editor.vue'
 
 <template>
   <div class="flex items-center justify-between w-screen h-screen p-12">
-    <div class="basis-7/12 flex flex-col items-center justify-between h-full">
+    <div
+      class="basis-7/12 flex flex-col items-center justify-between h-full space-y-8 overflow-y-auto"
+    >
       <Header></Header>
       <Preview></Preview>
       <Footer></Footer>
