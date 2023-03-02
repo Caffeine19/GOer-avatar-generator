@@ -11,11 +11,16 @@ const previewAvatarConfig = reactive<IAvatar>({
   //   backgroundColor: '#00ff00',
   //   secondaryColor: '#ff00ff'
   // }
+  radius: 32
 })
 </script>
 <template>
   <div class="shrink flex items-center justify-center w-4/5">
-    <Avatar class="max-h-lg max-w-lg" :color="previewAvatarConfig.color"></Avatar>
+    <Avatar
+      class="max-h-lg max-w-lg"
+      :color="previewAvatarConfig.color"
+      :radius="previewAvatarConfig.radius"
+    ></Avatar>
   </div>
 </template>
 <style></style>

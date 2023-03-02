@@ -11,28 +11,32 @@ const sampleAvatars = reactive<IAvatar[]>([
       primaryColor: '#FFCBCB',
       secondaryColor: '#FFE0E0',
       backgroundColor: '#FAEFEF'
-    }
+    },
+    radius: 32
   },
   {
     color: {
       primaryColor: '#FFCB8F',
       secondaryColor: '#FFE5C6',
       backgroundColor: '#FFECD6'
-    }
+    },
+    radius: 32
   },
   {
     color: {
       primaryColor: '#FFF',
       secondaryColor: '#000',
       backgroundColor: '#E6E6E6'
-    }
+    },
+    radius: 32
   },
   {
     color: {
       primaryColor: '#d0bfff',
       secondaryColor: '#b197fc',
       backgroundColor: '#f3d9fa'
-    }
+    },
+    radius: 32
   }
 ])
 </script>
@@ -48,6 +52,7 @@ const sampleAvatars = reactive<IAvatar[]>([
         v-for="(sample, index) in sampleAvatars"
         :key="index"
         :color="sample.color"
+        :radius="sample.radius"
         class="border-slate-200 w-16 h-16 p-1 border rounded-md"
       ></Avatar>
     </div>

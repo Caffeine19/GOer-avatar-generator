@@ -2,13 +2,17 @@
 <script setup lang="ts">
 defineProps<{
   color?: { primaryColor?: string; secondaryColor?: string; backgroundColor: string }
+  radius?: number
 }>()
+
+const clipPathId =
+  'clip' + (Math.random() * 100).toFixed(0) + '_' + (Math.random() * 100).toFixed(0)
 </script>
 <template>
   <svg viewBox="0 0 524 524" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="524" height="524" fill="none" />
+    <rect width="524" height="524" fill="none" :rx="radius || 0" />
     <g id="Avatar">
-      <g id="Property 1=Default" clip-path="url(#clip0_0_1)">
+      <g id="Property 1=Default" :clip-path="'url(#' + clipPathId + ')'">
         <rect :fill="color?.backgroundColor || '#D2F4F0'" width="524" height="524" />
         <g id="Group 9">
           <g id="Shadow" opacity="0.2">
@@ -254,8 +258,8 @@ defineProps<{
       />
     </g>
     <defs>
-      <clipPath id="clip0_0_1">
-        <rect width="524" height="524" fill="white" />
+      <clipPath :id="clipPathId">
+        <rect width="524" height="524" fill="white" :rx="radius || 0" />
       </clipPath>
     </defs>
   </svg>
