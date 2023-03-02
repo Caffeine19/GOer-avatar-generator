@@ -4,14 +4,15 @@ import ColorSelector from './ColorSelector.vue'
 import Slider from './Slider.vue'
 import Divider from './Divider.vue'
 import EditorSection from './EditorSection.vue'
-import avatarKey from '@/key/avatar'
-import { inject } from 'vue'
 
-const editingAvatar = inject(avatarKey)
-const updateColor = (value: string) => {
-  console.log({ value })
-  editingAvatar?.color?.primaryColor = value
-}
+import type { PropType } from 'vue'
+import type { IAvatar } from '@/types/avatar'
+import type { IUpdateColor } from '@/types/updateColor'
+
+defineProps({
+  editingAvatar: { type: Object as PropType<IAvatar>, required: true },
+  updateColor: { type: Function as PropType<IUpdateColor>, required: true }
+})
 </script>
 <template>
   <div
@@ -23,7 +24,7 @@ const updateColor = (value: string) => {
           <h3 class="cartograph-cf-regular text-slate-700">primary color/首要颜色</h3>
           <ColorSelector
             :value="editingAvatar?.color?.primaryColor"
-            @update-value="updateColor"
+            @update-value="(event) => updateColor('primaryColor', event)"
           ></ColorSelector>
         </div>
         <div class="space-y-1.5">

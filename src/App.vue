@@ -30,7 +30,7 @@ const updateColor = (key: keyof IColor, value: string) => {
       <Preview></Preview>
       <Footer></Footer>
     </div>
-    <Editor class="basis-3/12"></Editor>
+    <Editor class="basis-3/12" :editingAvatar="editingAvatar" :updateColor="updateColor"></Editor>
   </div>
 </template>
 
