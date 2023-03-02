@@ -6,11 +6,11 @@ import Avatar from './Avatar.vue'
 import type { IAvatar } from '@/types/avatar'
 
 const previewAvatarConfig = reactive<IAvatar>({
-  color: {
-    primaryColor: '#003400',
-    backgroundColor: '#00ff00',
-    secondaryColor: '#ff00ff'
-  }
+  // color: {
+  //   primaryColor: '#003400',
+  //   backgroundColor: '#00ff00',
+  //   secondaryColor: '#ff00ff'
+  // }
 })
 </script>
 <template>
