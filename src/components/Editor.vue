@@ -4,6 +4,14 @@ import ColorSelector from './ColorSelector.vue'
 import Slider from './Slider.vue'
 import Divider from './Divider.vue'
 import EditorSection from './EditorSection.vue'
+import avatarKey from '@/key/avatar'
+import { inject } from 'vue'
+
+const editingAvatar = inject(avatarKey)
+const updateColor = (value: string) => {
+  console.log({ value })
+  editingAvatar?.color?.primaryColor = value
+}
 </script>
 <template>
   <div
@@ -13,7 +21,10 @@ import EditorSection from './EditorSection.vue'
       <template #content>
         <div class="space-y-1.5">
           <h3 class="cartograph-cf-regular text-slate-700">primary color/首要颜色</h3>
-          <ColorSelector></ColorSelector>
+          <ColorSelector
+            :value="editingAvatar?.color?.primaryColor"
+            @update-value="updateColor"
+          ></ColorSelector>
         </div>
         <div class="space-y-1.5">
           <h3 class="cartograph-cf-regular text-slate-700">secondary color/次要颜色</h3>

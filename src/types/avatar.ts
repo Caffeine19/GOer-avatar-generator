@@ -1,7 +1,7 @@
 type IColor = {
   primaryColor?: string
   secondaryColor?: string
-  backgroundColor: string
+  backgroundColor?: string
 }
 
 type ISingleEye = {
@@ -23,4 +23,4 @@ type IAvatar = {
   radius?: Radius
 }
 
-export { type IAvatar }
+export { type IAvatar, type IColor }

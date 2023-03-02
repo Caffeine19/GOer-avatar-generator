@@ -3,6 +3,22 @@ import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import Preview from './components/Preview.vue'
 import Editor from './components/Editor.vue'
+import { provide, reactive } from 'vue'
+import type { IAvatar, IColor } from './types/avatar'
+import avatarKey from '@/key/avatar'
+
+const editingAvatar = reactive<IAvatar>({
+  color: { primaryColor: '#00ff00', secondaryColor: undefined, backgroundColor: undefined },
+  radius: undefined
+})
+
+provide(avatarKey, editingAvatar)
+
+const updateColor = (key: keyof IColor, value: string) => {
+  if (editingAvatar.color) {
+    editingAvatar.color[key] = value
+  }
+}
 </script>
 
 <template>

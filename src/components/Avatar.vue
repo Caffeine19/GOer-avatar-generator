@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 defineProps<{
-  color?: { primaryColor?: string; secondaryColor?: string; backgroundColor: string }
+  color?: { primaryColor?: string; secondaryColor?: string; backgroundColor?: string }
   radius?: number
 }>()
 
