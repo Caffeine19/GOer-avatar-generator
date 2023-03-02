@@ -6,7 +6,7 @@ defineProps<{
 </script>
 <template>
   <svg viewBox="0 0 524 524" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="524" height="524" fill="#D3D3D3" />
+    <rect width="524" height="524" fill="none" />
     <g id="Avatar">
       <g id="Property 1=Default" clip-path="url(#clip0_0_1)">
         <rect :fill="color?.backgroundColor || '#D2F4F0'" width="524" height="524" />
