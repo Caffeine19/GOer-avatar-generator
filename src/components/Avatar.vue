@@ -1,10 +1,16 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-defineProps<{
-  color?: { primaryColor?: string; secondaryColor?: string; backgroundColor?: string }
-  radius?: number
-  effect?: { blur: number }
-}>()
+import type { IColor, IEffect, IEyes } from '@/types/avatar'
+import type { PropType } from 'vue'
+
+defineProps({
+  color: { type: Object as PropType<IColor> },
+  effect: { type: Object as PropType<IEffect> },
+  radius: { type: Number },
+  eyes: {
+    type: Object as PropType<IEyes>
+  }
+})
 
 const clipPathId =
   'clip' + (Math.random() * 100).toFixed(0) + '_' + (Math.random() * 100).toFixed(0)
@@ -189,13 +195,19 @@ const filterId =
                   stroke-width="5.21279"
                 />
                 <g id="EyeBall">
-                  <circle id="Ellipse 3_3" cx="94.2991" cy="272.307" r="22.2992" fill="black" />
+                  <circle
+                    id="Ellipse 3_3"
+                    :cx="94.2991 + (eyes?.leftEye?.x || 0)"
+                    :cy="272.307 + (eyes?.leftEye?.y || 0)"
+                    :r="(22.2992 * (eyes?.leftEye?.scale || 1)) / 100"
+                    fill="black"
+                  />
                   <ellipse
                     id="Ellipse 4_3"
-                    cx="88.7967"
-                    cy="267.384"
-                    rx="9.26718"
-                    ry="8.68798"
+                    :cx="88.7967 + (eyes?.leftEye?.x || 0)"
+                    :cy="267.384 + (eyes?.leftEye?.y || 0)"
+                    :rx="(9.26718 * (eyes?.leftEye?.scale || 1)) / 100"
+                    :ry="(8.68798 * (eyes?.leftEye?.scale || 1)) / 100"
                     fill="white"
                   />
                 </g>
@@ -209,13 +221,19 @@ const filterId =
                   stroke-width="6.95038"
                 />
                 <g id="EyeBall_2">
-                  <circle id="Ellipse 3_4" cx="431.698" cy="276.072" r="30.6975" fill="black" />
+                  <circle
+                    id="Ellipse 3_4"
+                    :r="(30.6975 * (eyes?.rightEye?.scale || 1)) / 100"
+                    fill="black"
+                    :cx="431.698 + (eyes?.rightEye?.x || 0)"
+                    :cy="276.072 + (eyes?.rightEye?.y || 0)"
+                  />
                   <ellipse
                     id="Ellipse 4_4"
-                    cx="424.123"
-                    cy="269.294"
-                    rx="12.7574"
-                    ry="11.9601"
+                    :rx="(12.7574 * (eyes?.rightEye?.scale || 1)) / 100"
+                    :ry="(11.9601 * (eyes?.rightEye?.scale || 1)) / 100"
+                    :cx="424.123 + (eyes?.rightEye?.x || 0)"
+                    :cy="269.294 + (eyes?.rightEye?.y || 0)"
                     fill="white"
                   />
                 </g>

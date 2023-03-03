@@ -28,4 +28,4 @@ type IAvatar = {
   effect?: IEffect
 }
 
-export { type IAvatar, type IColor, type IEffect }
+export { type IAvatar, type IColor, type IEffect, type IEyes }

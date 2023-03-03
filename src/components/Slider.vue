@@ -8,15 +8,18 @@ const props = withDefaults(defineProps<{ min?: number; max?: number; range?: num
   max: 100,
   range: 50
 })
-const localRange = ref(props.range)
+const localRange = ref<string>(props.range.toString())
 const emits = defineEmits<{
   (e: 'updateRange', value: number): void
 }>()
 watch(
   localRange,
   () => {
-    percent.value = Math.floor(((localRange.value - props.min) / (props.max - props.min)) * 100)
-    emits('updateRange', localRange.value)
+    // console.log(typeof localRange.value)
+    percent.value = Math.floor(
+      ((parseInt(localRange.value) - props.min) / (props.max - props.min)) * 100
+    )
+    emits('updateRange', parseInt(localRange.value))
   },
   { immediate: true }
 )

@@ -19,6 +19,7 @@ defineProps({
       :color="editingAvatar?.color"
       :radius="editingAvatar?.radius"
       :effect="editingAvatar.effect"
+      :eyes="editingAvatar.eyes"
     ></Avatar>
     <canvas id="canvas" class="hidden"></canvas>
   </div>
