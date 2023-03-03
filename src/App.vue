@@ -3,16 +3,13 @@ import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import Preview from './components/Preview.vue'
 import Editor from './components/Editor.vue'
-import { provide, reactive } from 'vue'
+import { reactive } from 'vue'
 import type { IAvatar, IColor } from './types/avatar'
-import avatarKey from '@/key/avatar'
 
 const editingAvatar = reactive<IAvatar>({
-  color: { primaryColor: '#00ff00', secondaryColor: undefined, backgroundColor: undefined },
+  color: { primaryColor: undefined, secondaryColor: undefined, backgroundColor: undefined },
   radius: undefined
 })
-
-provide(avatarKey, editingAvatar)
 
 const updateColor = (key: keyof IColor, value: string) => {
   if (editingAvatar.color) {
@@ -26,12 +23,10 @@ const updateColor = (key: keyof IColor, value: string) => {
     <div
       class="basis-7/12 flex flex-col items-center justify-between h-full space-y-8 overflow-y-auto"
     >
-      <Header></Header>
-      <Preview></Preview>
+      <Header :editingAvatar="editingAvatar"></Header>
+      <Preview :editingAvatar="editingAvatar"></Preview>
       <Footer></Footer>
     </div>
     <Editor class="basis-3/12" :editingAvatar="editingAvatar" :updateColor="updateColor"></Editor>
   </div>
 </template>
-
-<style scoped></style>
