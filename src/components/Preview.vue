@@ -14,10 +14,12 @@ defineProps({
 <template>
   <div class="shrink flex items-center justify-center w-4/5">
     <Avatar
+      id="preview"
       class="max-h-lg max-w-lg"
       :color="editingAvatar?.color"
       :radius="editingAvatar?.radius"
     ></Avatar>
+    <canvas id="canvas" class="hidden"></canvas>
   </div>
 </template>
 <style></style>

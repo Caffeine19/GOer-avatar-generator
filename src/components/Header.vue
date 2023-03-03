@@ -33,39 +33,37 @@ function triggerDownload(imgURI: string) {
 }
 
 const test = () => {
-
   let svg = document.getElementById('preview')
   if (svg) {
-    const data = (new XMLSerializer()).serializeToString(svg);
+    const data = new XMLSerializer().serializeToString(svg)
     const svgBlob = new Blob([data], {
       type: 'image/svg+xml;charset=utf-8'
-    });
-    const url = URL.createObjectURL(svgBlob);
-    const img = new Image();
+    })
+    const url = URL.createObjectURL(svgBlob)
+    const img = new Image()
     img.addEventListener('load', () => {
       // (Next step: Image to Canvas)
-      const bbox = svg.getBBox();
+      const bbox = svg.getBBox()
 
-      const canvas = document.createElement('canvas');
-      canvas.width = 512;
-      canvas.height = 512;
+      const canvas = document.getElementById('canvas')
+      canvas.width = 512
+      canvas.height = 512
 
-      const context = canvas.getContext('2d');
-      context.drawImage(img, 0, 0, 512, 512);
+      const context = canvas.getContext('2d')
+      context.drawImage(img, 0, 0, 512, 512)
 
-      URL.revokeObjectURL(url);
+      URL.revokeObjectURL(url)
 
       // trigger a synthetic download operation with a temporary link
-      const a = document.createElement('a');
-      a.download = 'image.png';
-      document.body.appendChild(a);
-      a.href = canvas.toDataURL();
-      a.click();
-      a.remove();
-    });
-    img.src = url;
+      const a = document.createElement('a')
+      a.download = 'image.png'
+      document.body.appendChild(a)
+      a.href = canvas.toDataURL()
+      a.click()
+      a.remove()
+    })
+    img.src = url
   }
-
 
   // let canvas = document.getElementById('canvas')
 
@@ -84,17 +82,11 @@ const test = () => {
 
   //     img.onload = function () {
 
-
-
-
-
   //       console.log(svg!.clientWidth, svg!.clientHeight, img.clientHeight);
 
   //       ctx?.drawImage(img, 0, 0,);
 
   //       DOMURL.revokeObjectURL(url);
-
-
 
   //       var imgURI = (canvas as HTMLCanvasElement)
   //         .toDataURL('image/png')
@@ -106,18 +98,21 @@ const test = () => {
   //   }
   // }
 }
-
-
 </script>
 <template>
   <div
-    class="rounded-xl shadow-slate-900/5 border-slate-100 flex items-center justify-between w-4/5 px-4 py-3 bg-white border shadow-xl">
+    class="rounded-xl shadow-slate-900/5 border-slate-100 flex items-center justify-between w-4/5 px-4 py-3 bg-white border shadow-xl"
+  >
     <div class="flex items-center space-x-3">
       <Avatar class="w-16 h-16 -mt-4" :color="logoColor"></Avatar>
-      <h1 class="cartograph-cf-regular-italic text-gradient text-2xl" :style="{
-        'background-image': `-webkit-linear-gradient(right, ${logoColor.primaryColor || '#61BCE2'
+      <h1
+        class="cartograph-cf-regular-italic text-gradient text-2xl"
+        :style="{
+          'background-image': `-webkit-linear-gradient(right, ${
+            logoColor.primaryColor || '#61BCE2'
           },${logoColor.secondaryColor || '#90D0EB'}, ${logoColor.primaryColor || '#61BCE2'})`
-      }">
+        }"
+      >
         GOer-avatar-generator
       </h1>
     </div>
