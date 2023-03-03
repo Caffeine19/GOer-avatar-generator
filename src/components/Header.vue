@@ -43,60 +43,30 @@ const test = () => {
     const img = new Image()
     img.addEventListener('load', () => {
       // (Next step: Image to Canvas)
-      const bbox = svg.getBBox()
 
       const canvas = document.getElementById('canvas')
-      canvas.width = 512
-      canvas.height = 512
+      if (canvas) {
+        ;(canvas as HTMLCanvasElement).width = 512
+        ;(canvas as HTMLCanvasElement).height = 512
 
-      const context = canvas.getContext('2d')
-      context.drawImage(img, 0, 0, 512, 512)
+        const context = (canvas as HTMLCanvasElement).getContext('2d')
+        if (context) {
+          context.drawImage(img, 0, 0, 512, 512)
 
-      URL.revokeObjectURL(url)
+          URL.revokeObjectURL(url)
 
-      // trigger a synthetic download operation with a temporary link
-      const a = document.createElement('a')
-      a.download = 'image.png'
-      document.body.appendChild(a)
-      a.href = canvas.toDataURL()
-      a.click()
-      a.remove()
+          // trigger a synthetic download operation with a temporary link
+          const a = document.createElement('a')
+          a.download = 'image.png'
+          document.body.appendChild(a)
+          a.href = (canvas as HTMLCanvasElement).toDataURL()
+          a.click()
+          a.remove()
+        }
+      }
     })
     img.src = url
   }
-
-  // let canvas = document.getElementById('canvas')
-
-  // if (canvas !== null && svg !== null) {
-  //   // (canvas as HTMLCanvasElement).setAttribute('width', svg!.clientWidth.toString());
-  //   // (canvas as HTMLCanvasElement).setAttribute('height', svg!.clientHeight.toString());
-  //   let ctx = (canvas as HTMLCanvasElement).getContext('2d')
-
-  //   if (ctx !== null) {
-
-  //     var DOMURL = window.URL || window.webkitURL || window
-
-  //     var img = new Image()
-
-  //     var url = DOMURL.createObjectURL(svgBlob)
-
-  //     img.onload = function () {
-
-  //       console.log(svg!.clientWidth, svg!.clientHeight, img.clientHeight);
-
-  //       ctx?.drawImage(img, 0, 0,);
-
-  //       DOMURL.revokeObjectURL(url);
-
-  //       var imgURI = (canvas as HTMLCanvasElement)
-  //         .toDataURL('image/png')
-  //         .replace('image/png', 'image/octet-stream')
-
-  //       triggerDownload(imgURI)
-  //     }
-  //     img.src = url
-  //   }
-  // }
 }
 </script>
 <template>
