@@ -9,11 +9,13 @@ import type { PropType } from 'vue'
 import type { IAvatar } from '@/types/avatar'
 import type { IUpdateColor } from '@/types/updateColor'
 import type { IUpdateRadius } from '@/types/updateRadius'
+import type { IUpdateEffect } from '@/types/updateEffect'
 
 defineProps({
   editingAvatar: { type: Object as PropType<IAvatar>, required: true },
   updateColor: { type: Function as PropType<IUpdateColor>, required: true },
-  updateRadius: { type: Function as PropType<IUpdateRadius>, required: true }
+  updateRadius: { type: Function as PropType<IUpdateRadius>, required: true },
+  updateEffect: { type: Function as PropType<IUpdateEffect>, required: true }
 })
 </script>
 <template>
@@ -94,7 +96,12 @@ defineProps({
       <template v-slot:content>
         <div class="flex items-center justify-between space-x-4">
           <h4 class="cartograph-cf-regular text-slate-700">Blur</h4>
-          <Slider class="basis-4/5"></Slider>
+          <Slider
+            :max="20"
+            class="basis-4/5"
+            :range="editingAvatar.effect?.blur || 0"
+            @update-range="(event) => updateEffect('blur', event)"
+          ></Slider>
         </div>
       </template>
       <template v-slot:remark

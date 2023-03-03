@@ -15,12 +15,17 @@ type IEyes = {
   leftEye: ISingleEye
 }
 
-type Radius = number
+type IRadius = number
+
+type IEffect = {
+  blur: number
+}
 
 type IAvatar = {
   color?: IColor
   eyes?: IEyes
-  radius?: Radius
+  radius?: IRadius
+  effect?: IEffect
 }
 
-export { type IAvatar, type IColor }
+export { type IAvatar, type IColor, type IEffect }

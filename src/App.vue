@@ -4,11 +4,14 @@ import Footer from './components/Footer.vue'
 import Preview from './components/Preview.vue'
 import Editor from './components/Editor.vue'
 import { reactive } from 'vue'
-import type { IAvatar, IColor } from './types/avatar'
+import type { IAvatar, IColor, IEffect } from './types/avatar'
 
 const editingAvatar = reactive<IAvatar>({
   color: { primaryColor: undefined, secondaryColor: undefined, backgroundColor: undefined },
-  radius: undefined
+  radius: undefined,
+  effect: {
+    blur: 0
+  }
 })
 
 const updateColor = (key: keyof IColor, value: string) => {
@@ -19,6 +22,10 @@ const updateColor = (key: keyof IColor, value: string) => {
 
 const updateRadius = (value: number) => {
   editingAvatar.radius = value
+}
+
+const updateEffect = (key: keyof IEffect, value: number) => {
+  if (editingAvatar.effect) editingAvatar.effect[key] = value
 }
 </script>
 
@@ -36,6 +43,7 @@ const updateRadius = (value: number) => {
       :editingAvatar="editingAvatar"
       :updateColor="updateColor"
       :updateRadius="updateRadius"
+      :updateEffect="updateEffect"
     ></Editor>
   </div>
 </template>

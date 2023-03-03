@@ -18,6 +18,7 @@ defineProps({
       class="max-h-lg max-w-lg"
       :color="editingAvatar?.color"
       :radius="editingAvatar?.radius"
+      :effect="editingAvatar.effect"
     ></Avatar>
     <canvas id="canvas" class="hidden"></canvas>
   </div>
