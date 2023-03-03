@@ -29,11 +29,17 @@ defineProps({
         </div>
         <div class="space-y-1.5">
           <h3 class="cartograph-cf-regular text-slate-700">secondary color/次要颜色</h3>
-          <ColorSelector></ColorSelector>
+          <ColorSelector
+            :value="editingAvatar?.color?.secondaryColor"
+            @update-value="(event) => updateColor('secondaryColor', event)"
+          ></ColorSelector>
         </div>
         <div class="space-y-1.5">
           <h3 class="cartograph-cf-regular text-slate-700">background color/背景颜色</h3>
-          <ColorSelector></ColorSelector>
+          <ColorSelector
+            :value="editingAvatar?.color?.backgroundColor"
+            @update-value="(event) => updateColor('backgroundColor', event)"
+          ></ColorSelector>
         </div>
       </template>
     </EditorSection>

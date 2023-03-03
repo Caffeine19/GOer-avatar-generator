@@ -25,7 +25,11 @@ const logoColor = computed(() => {
       <Avatar class="w-16 h-16 -mt-4" :color="logoColor"></Avatar>
       <h1
         class="cartograph-cf-regular-italic text-gradient text-2xl"
-        style="background-image: -webkit-linear-gradient(right, #61bce2, #d2f4f0, #90d0eb)"
+        :style="{
+          'background-image': `-webkit-linear-gradient(right, ${
+            logoColor.primaryColor || '#61BCE2'
+          },${logoColor.secondaryColor || '#90D0EB'}, ${logoColor.primaryColor || '#61BCE2'})`
+        }"
       >
         GOer-avatar-generator
       </h1>
