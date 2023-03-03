@@ -52,7 +52,7 @@ const downloadAvatar = () => {
 </script>
 <template>
   <div
-    class="rounded-xl shadow-slate-900/5 border-slate-100 flex items-center justify-between w-4/5 px-4 py-3 bg-white border shadow-xl"
+    class="rounded-xl shadow-slate-900/5 dark:shadow-black/20  border-slate-100 flex items-center justify-between w-4/5 px-4 py-3 bg-white border shadow-xl dark:border-slate-700 dark:bg-slate-800"
   >
     <div class="flex items-center space-x-3">
       <Avatar class="w-16 h-16 -mt-4" :color="logoColor"></Avatar>
@@ -69,14 +69,14 @@ const downloadAvatar = () => {
     </div>
     <div class="flex items-stretch space-x-4">
       <button
-        class="text-slate-700 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
+        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
       >
         <i class="ph-floppy-disk" style="font-size: 28px"></i>
         <span class="text-lg">保存</span>
       </button>
       <Divider direction="vertical" />
       <button
-        class="text-slate-700 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
+        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
         @click="downloadAvatar"
       >
         <i class="ph-download-simple" style="font-size: 28px"></i>

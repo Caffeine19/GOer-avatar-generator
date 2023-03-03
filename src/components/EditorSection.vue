@@ -15,16 +15,16 @@ const toggleSectionContent = () => {
 <template>
   <div name="section" class="space-y-3">
     <div name="section-title" class="flex items-center justify-between">
-      <div class="flex items-center space-x-3">
+      <div class="flex items-center space-x-3 text-slate-900 dark:text-white ">
         <i :class="titleIcon" style="font-size: 28px"></i>
-        <h2 class="cartograph-cf-regular-italic text-slate-900 text-xl">{{ titleText }}</h2>
+        <h2 class="cartograph-cf-regular-italic text-xl">{{ titleText }}</h2>
       </div>
       <button
         class="flex items-center justify-center transition-transform duration-300"
         @click="toggleSectionContent"
         :class="isSectionContentCollapsed ? 'rotate-0' : 'rotate-180'"
       >
-        <i class="ph-caret-down text-slate-400" style="font-size: 20px"></i>
+        <i class="ph-caret-down text-slate-400 " style="font-size: 20px"></i>
       </button>
     </div>
     <div

@@ -2,15 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
     body {
-        @apply bg-slate-50 w-screen h-screen
+        @apply bg-slate-50 dark:bg-slate-900 w-screen h-screen;
     }
 }
 
 @layer utilities {
-
     .cartograph-cf-regular {
         font-family: cartograph-cf-regular;
     }
@@ -21,12 +19,12 @@
 
     @font-face {
         font-family: cartograph-cf-regular;
-        src: url("./assets/font/cartograph-cf-regular.otf");
+        src: url('./assets/font/cartograph-cf-regular.otf');
     }
 
     @font-face {
         font-family: cartograph-cf-regular-italic;
-        src: url("./assets/font/cartograph-cf-regular-italic.otf");
+        src: url('./assets/font/cartograph-cf-regular-italic.otf');
     }
 
     .text-gradient {

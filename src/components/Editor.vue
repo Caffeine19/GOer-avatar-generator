@@ -22,26 +22,32 @@ defineProps({
 </script>
 <template>
   <div
-    class="shadow-slate-900/5 rounded-xl border-slate-100 h-full p-4 space-y-4 overflow-y-auto bg-white border shadow-xl"
+    class="shadow-slate-900/5 dark:shadow-black/20 rounded-xl dark:border-slate-700 dark:bg-slate-800 border-slate-100 h-full p-4 space-y-4 overflow-y-auto bg-white border shadow-xl"
   >
     <EditorSection title-icon="ph-palette" title-text="Color/颜色">
       <template #content>
         <div class="space-y-1.5">
-          <h3 class="cartograph-cf-regular text-slate-700">primary color/首要颜色</h3>
+          <h3 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">
+            primary color/首要颜色
+          </h3>
           <ColorSelector
             :value="editingAvatar?.color?.primaryColor || '#61BCE2'"
             @update-value="(event) => updateColor('primaryColor', event)"
           ></ColorSelector>
         </div>
         <div class="space-y-1.5">
-          <h3 class="cartograph-cf-regular text-slate-700">secondary color/次要颜色</h3>
+          <h3 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">
+            secondary color/次要颜色
+          </h3>
           <ColorSelector
             :value="editingAvatar?.color?.secondaryColor || '#90D0EB'"
             @update-value="(event) => updateColor('secondaryColor', event)"
           ></ColorSelector>
         </div>
         <div class="space-y-1.5">
-          <h3 class="cartograph-cf-regular text-slate-700">background color/背景颜色</h3>
+          <h3 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">
+            background color/背景颜色
+          </h3>
           <ColorSelector
             :value="editingAvatar?.color?.backgroundColor || '#D2F4F0'"
             @update-value="(event) => updateColor('backgroundColor', event)"
@@ -54,10 +60,10 @@ defineProps({
     <EditorSection title-icon="ph-atom" title-text="Eyes/眼睛">
       <template v-slot:content>
         <div class="space-y-2">
-          <h3 class="cartograph-cf-regular text-slate-800 text-base">left/左</h3>
+          <h3 class="cartograph-cf-regular text-slate-800 dark:text-slate-50 text-base">left/左</h3>
           <div class="space-y-2">
             <div class="flex items-center justify-between space-x-4">
-              <h4 class="cartograph-cf-regular text-slate-700">Scale</h4>
+              <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">Scale</h4>
               <Slider
                 class="basis-4/5"
                 :max="300"
@@ -70,7 +76,7 @@ defineProps({
               ></Slider>
             </div>
             <div class="flex items-center justify-between space-x-4">
-              <h4 class="cartograph-cf-regular text-slate-700">X</h4>
+              <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">X</h4>
               <Slider
                 class="basis-4/5"
                 :range="editingAvatar.eyes?.leftEye.x || 0"
@@ -84,7 +90,7 @@ defineProps({
               ></Slider>
             </div>
             <div class="flex items-center justify-between space-x-4">
-              <h4 class="cartograph-cf-regular text-slate-700">Y</h4>
+              <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">Y</h4>
               <Slider
                 class="basis-4/5"
                 :range="editingAvatar.eyes?.leftEye.y || 0"
@@ -100,10 +106,12 @@ defineProps({
           </div>
         </div>
         <div class="space-y-2">
-          <h3 class="cartograph-cf-regular text-slate-800 text-base">right/右</h3>
+          <h3 class="cartograph-cf-regular text-slate-800 dark:text-slate-50 text-base">
+            right/右
+          </h3>
           <div class="space-y-2">
             <div class="flex items-center justify-between space-x-4">
-              <h4 class="cartograph-cf-regular text-slate-700">Scale</h4>
+              <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">Scale</h4>
               <Slider
                 class="basis-4/5"
                 :range="editingAvatar.eyes?.rightEye.scale || 1"
@@ -116,7 +124,7 @@ defineProps({
               ></Slider>
             </div>
             <div class="flex items-center justify-between space-x-4">
-              <h4 class="cartograph-cf-regular text-slate-700">X</h4>
+              <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">X</h4>
               <Slider
                 class="basis-4/5"
                 :range="editingAvatar.eyes?.rightEye.x || 0"
@@ -130,7 +138,7 @@ defineProps({
               ></Slider>
             </div>
             <div class="flex items-center justify-between space-x-4">
-              <h4 class="cartograph-cf-regular text-slate-700">Y</h4>
+              <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">Y</h4>
               <Slider
                 class="basis-4/5"
                 :range="editingAvatar.eyes?.rightEye.y || 0"
@@ -147,7 +155,9 @@ defineProps({
         </div>
       </template>
       <template v-slot:remark>
-        <p class="text-slate-300 text-xs font-light">*大小眼往往被作为判定高智慧人士的依据之一</p>
+        <p class="text-slate-300 dark:text-slate-500 text-xs font-light">
+          *大小眼往往被作为判定高智慧人士的依据之一
+        </p>
       </template>
     </EditorSection>
     <Divider></Divider>
@@ -155,7 +165,7 @@ defineProps({
     <EditorSection title-icon="ph-magic-wand" title-text="Effect/特效">
       <template v-slot:content>
         <div class="flex items-center justify-between space-x-4">
-          <h4 class="cartograph-cf-regular text-slate-700">Blur</h4>
+          <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">Blur</h4>
           <Slider
             :max="20"
             class="basis-4/5"
@@ -165,7 +175,7 @@ defineProps({
         </div>
       </template>
       <template v-slot:remark
-        ><p class="text-slate-300 text-xs font-light">
+        ><p class="text-slate-300 dark:text-slate-500 text-xs font-light">
           *我在制作的过程中，保留了一部分模糊，因为我觉得，只有保留一部分模糊，才知道你用的是网图（骄傲）.jpg
         </p></template
       >
@@ -175,7 +185,7 @@ defineProps({
     <EditorSection title-icon="ph-planet" title-text="Round Corner/圆角">
       <template v-slot:content>
         <div class="flex items-center justify-between space-x-4">
-          <h4 class="cartograph-cf-regular text-slate-700">Radius</h4>
+          <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">Radius</h4>
           <Slider
             class="basis-4/5"
             :range="editingAvatar.radius || 0"

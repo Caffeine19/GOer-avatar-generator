@@ -33,23 +33,16 @@ watch(
         name="volume"
         :min="min"
         :max="max"
-        class="border-slate-200 opacity-60 w-full h-5 border rounded"
+        class="border-slate-200 opacity-60 dark:border-slate-600 w-full h-5 border rounded"
         v-model="localRange"
-        :style="{
-          'background-image': `-webkit-gradient(
-            linear,
-            left top,
-            right top,
-            color-stop(${percent}%, #f1f5f9),
-            color-stop(${percent}%, #fff)
-          )`
-        }"
       />
     </div>
     <div
-      class="border-slate-200 flex items-center justify-center w-10 h-6 overflow-hidden border rounded"
+      class="border-slate-200 dark:border-slate-600 flex items-center justify-center w-10 h-6 overflow-hidden border rounded"
     >
-      <p class="text-slate-700 cartograph-cf-regular text-base">{{ localRange }}</p>
+      <p class="text-slate-700 cartograph-cf-regular dark:text-slate-100 text-base">
+        {{ localRange }}
+      </p>
     </div>
   </div>
 </template>
@@ -58,15 +51,25 @@ watch(
 input[type='range'] {
   -webkit-appearance: none;
 
-  /* background-image: -webkit-gradient(
+  background-image: -webkit-gradient(
     linear,
     left top,
     right top,
-    color-stop(15%, #f1f5f9),
-    color-stop(15%, #fff)
-  ); */
+    color-stop(v-bind(percent + '%'), #f1f5f9),
+    color-stop(v-bind(percent + '%'), #fff)
+  );
 }
-
+@media (prefers-color-scheme: dark) {
+  input[type='range'] {
+    background-image: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      color-stop(v-bind(percent + '%'), #334155),
+      color-stop(v-bind(percent + '%'), #1e293b)
+    );
+  }
+}
 input[type='range']:focus {
   outline: none;
   @apply opacity-100;
@@ -74,6 +77,6 @@ input[type='range']:focus {
 
 input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none !important;
-  @apply bg-slate-300 h-7 cursor-ew-resize w-4 rounded;
+  @apply bg-slate-300 h-7 cursor-ew-resize dark:bg-slate-500 w-4 rounded;
 }
 </style>
