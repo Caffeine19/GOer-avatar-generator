@@ -68,12 +68,17 @@ const downloadAvatar = () => {
       </h1>
     </div>
     <div class="flex items-stretch space-x-4">
-      <button class="text-slate-700 flex items-center space-x-3">
+      <button
+        class="text-slate-700 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
+      >
         <i class="ph-floppy-disk" style="font-size: 28px"></i>
         <span class="text-lg">保存</span>
       </button>
       <Divider direction="vertical" />
-      <button class="text-slate-700 flex items-center space-x-3" @click="downloadAvatar">
+      <button
+        class="text-slate-700 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
+        @click="downloadAvatar"
+      >
         <i class="ph-download-simple" style="font-size: 28px"></i>
         <span class="text-lg">下载</span>
       </button>
