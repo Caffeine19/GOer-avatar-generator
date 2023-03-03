@@ -8,10 +8,12 @@ import EditorSection from './EditorSection.vue'
 import type { PropType } from 'vue'
 import type { IAvatar } from '@/types/avatar'
 import type { IUpdateColor } from '@/types/updateColor'
+import type { IUpdateRadius } from '@/types/updateRadius'
 
 defineProps({
   editingAvatar: { type: Object as PropType<IAvatar>, required: true },
-  updateColor: { type: Function as PropType<IUpdateColor>, required: true }
+  updateColor: { type: Function as PropType<IUpdateColor>, required: true },
+  updateRadius: { type: Function as PropType<IUpdateRadius>, required: true }
 })
 </script>
 <template>
@@ -107,7 +109,12 @@ defineProps({
       <template v-slot:content>
         <div class="flex items-center justify-between space-x-4">
           <h4 class="cartograph-cf-regular text-slate-700">Radius</h4>
-          <Slider class="basis-4/5"></Slider>
+          <Slider
+            class="basis-4/5"
+            :range="editingAvatar.radius || 0"
+            :max="300"
+            @update-range="updateRadius"
+          ></Slider>
         </div>
       </template>
     </EditorSection>

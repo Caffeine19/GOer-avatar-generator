@@ -16,6 +16,10 @@ const updateColor = (key: keyof IColor, value: string) => {
     editingAvatar.color[key] = value
   }
 }
+
+const updateRadius = (value: number) => {
+  editingAvatar.radius = value
+}
 </script>
 
 <template>
@@ -27,6 +31,11 @@ const updateColor = (key: keyof IColor, value: string) => {
       <Preview :editingAvatar="editingAvatar"></Preview>
       <Footer></Footer>
     </div>
-    <Editor class="basis-3/12" :editingAvatar="editingAvatar" :updateColor="updateColor"></Editor>
+    <Editor
+      class="basis-3/12"
+      :editingAvatar="editingAvatar"
+      :updateColor="updateColor"
+      :updateRadius="updateRadius"
+    ></Editor>
   </div>
 </template>
