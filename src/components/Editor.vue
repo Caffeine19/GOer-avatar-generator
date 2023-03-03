@@ -25,21 +25,21 @@ defineProps({
         <div class="space-y-1.5">
           <h3 class="cartograph-cf-regular text-slate-700">primary color/首要颜色</h3>
           <ColorSelector
-            :value="editingAvatar?.color?.primaryColor"
+            :value="editingAvatar?.color?.primaryColor || '#61BCE2'"
             @update-value="(event) => updateColor('primaryColor', event)"
           ></ColorSelector>
         </div>
         <div class="space-y-1.5">
           <h3 class="cartograph-cf-regular text-slate-700">secondary color/次要颜色</h3>
           <ColorSelector
-            :value="editingAvatar?.color?.secondaryColor"
+            :value="editingAvatar?.color?.secondaryColor || '#90D0EB'"
             @update-value="(event) => updateColor('secondaryColor', event)"
           ></ColorSelector>
         </div>
         <div class="space-y-1.5">
           <h3 class="cartograph-cf-regular text-slate-700">background color/背景颜色</h3>
           <ColorSelector
-            :value="editingAvatar?.color?.backgroundColor"
+            :value="editingAvatar?.color?.backgroundColor || '#D2F4F0'"
             @update-value="(event) => updateColor('backgroundColor', event)"
           ></ColorSelector>
         </div>

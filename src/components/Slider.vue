@@ -46,7 +46,7 @@ watch(
     <div
       class="border-slate-200 flex items-center justify-center w-10 h-6 overflow-hidden border rounded"
     >
-      <p class="text-slate-700 text-base">{{ localRange }}</p>
+      <p class="text-slate-700 cartograph-cf-regular text-base">{{ localRange }}</p>
     </div>
   </div>
 </template>
@@ -71,6 +71,6 @@ input[type='range']:focus {
 
 input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none !important;
-  @apply bg-slate-300 h-7 w-4 rounded;
+  @apply bg-slate-300 h-7 cursor-ew-resize w-4 rounded;
 }
 </style>
