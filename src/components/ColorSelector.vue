@@ -12,7 +12,7 @@ defineEmits<{ (e: 'updateValue', value: string): void }>()
       :value="value"
       id="colorWell"
       class="absolute top-0 left-0 w-full opacity-0"
-      @change="$emit('updateValue', ($event.target as HTMLInputElement).value)"
+      @input="$emit('updateValue', ($event.target as HTMLInputElement).value)"
     />
   </div>
 </template>
