@@ -17,12 +17,12 @@ const editingAvatar = reactive<IAvatar>({
     leftEye: {
       x: 0,
       y: 0,
-      scale: 1
+      scale: 100
     },
     rightEye: {
       x: 0,
       y: 0,
-      scale: 1
+      scale: 100
     }
   }
 })
