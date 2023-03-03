@@ -67,15 +67,15 @@ const downloadAvatar = () => {
         GOer-avatar-generator
       </h1>
     </div>
-    <div class="flex items-center space-x-4">
+    <div class="flex items-stretch space-x-4">
       <button class="text-slate-700 flex items-center space-x-3">
-        <i class="ph-download-simple" style="font-size: 28px"></i>
+        <i class="ph-floppy-disk" style="font-size: 28px"></i>
         <span class="text-lg">保存</span>
       </button>
-
+      <Divider direction="vertical" />
       <button class="text-slate-700 flex items-center space-x-3" @click="downloadAvatar">
-        <i class="ph-upload-simple" style="font-size: 28px"></i>
-        <span class="text-lg">导出</span>
+        <i class="ph-download-simple" style="font-size: 28px"></i>
+        <span class="text-lg">下载</span>
       </button>
     </div>
   </div>
