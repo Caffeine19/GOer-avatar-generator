@@ -199,15 +199,15 @@ const filterId =
                     id="Ellipse 3_3"
                     :cx="94.2991 + (eyes?.leftEye?.x || 0)"
                     :cy="272.307 + (eyes?.leftEye?.y || 0)"
-                    :r="(22.2992 * (eyes?.leftEye?.scale || 1)) / 100"
+                    :r="(22.2992 * (eyes?.leftEye?.scale || 100)) / 100"
                     fill="black"
                   />
                   <ellipse
                     id="Ellipse 4_3"
                     :cx="88.7967 + (eyes?.leftEye?.x || 0)"
                     :cy="267.384 + (eyes?.leftEye?.y || 0)"
-                    :rx="(9.26718 * (eyes?.leftEye?.scale || 1)) / 100"
-                    :ry="(8.68798 * (eyes?.leftEye?.scale || 1)) / 100"
+                    :rx="(9.26718 * (eyes?.leftEye?.scale || 100)) / 100"
+                    :ry="(8.68798 * (eyes?.leftEye?.scale || 100)) / 100"
                     fill="white"
                   />
                 </g>
@@ -223,15 +223,15 @@ const filterId =
                 <g id="EyeBall_2">
                   <circle
                     id="Ellipse 3_4"
-                    :r="(30.6975 * (eyes?.rightEye?.scale || 1)) / 100"
+                    :r="(30.6975 * (eyes?.rightEye?.scale || 100)) / 100"
                     fill="black"
                     :cx="431.698 + (eyes?.rightEye?.x || 0)"
                     :cy="276.072 + (eyes?.rightEye?.y || 0)"
                   />
                   <ellipse
                     id="Ellipse 4_4"
-                    :rx="(12.7574 * (eyes?.rightEye?.scale || 1)) / 100"
-                    :ry="(11.9601 * (eyes?.rightEye?.scale || 1)) / 100"
+                    :rx="(12.7574 * (eyes?.rightEye?.scale || 100)) / 100"
+                    :ry="(11.9601 * (eyes?.rightEye?.scale || 100)) / 100"
                     :cx="424.123 + (eyes?.rightEye?.x || 0)"
                     :cy="269.294 + (eyes?.rightEye?.y || 0)"
                     fill="white"
