@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed, type PropType } from 'vue'
+import { computed, ref, type PropType } from 'vue'
 
 import Avatar from './Avatar.vue'
 import Divider from './Divider.vue'
@@ -49,10 +49,15 @@ const downloadAvatar = () => {
     img.src = url
   }
 }
+
+const isMenuOpening = ref(false)
+const toggleMenu = () => {
+  isMenuOpening.value = !isMenuOpening.value
+}
 </script>
 <template>
   <div
-    class="rounded-xl shadow-slate-900/5 dark:shadow-black/20 border-slate-100 2xl:w-4/5 dark:border-slate-700 dark:bg-slate-800 flex items-center justify-between w-full px-4 py-3 bg-white border shadow-xl"
+    class="rounded-xl shadow-slate-900/5 dark:shadow-black/20 border-slate-100 2xl:w-4/5 dark:border-slate-700 dark:bg-slate-800 relative flex items-center justify-between w-full px-4 py-3 bg-white border shadow-xl"
   >
     <div class="flex items-center space-x-3">
       <Avatar
@@ -88,9 +93,29 @@ const downloadAvatar = () => {
     </div>
     <button
       class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 xl:hidden flex items-center p-1 space-x-3 transition-colors border border-transparent rounded-md"
+      @click="toggleMenu"
     >
       <i class="ph-list-dashes" style="font-size: 28px"></i>
     </button>
+    <div
+      class="top-20 dark:border-slate-700 dark:bg-slate-800 rounded-xl shadow-slate-900/5 dark:shadow-black/20 border-slate-100 xl:hidden absolute right-0 z-10 flex flex-col items-center px-4 py-2 space-y-2 bg-white border"
+      :class="isMenuOpening ? 'flex' : 'hidden'"
+    >
+      <button
+        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
+      >
+        <i class="ph-floppy-disk" style="font-size: 28px"></i>
+        <span class="text-lg">保存</span>
+      </button>
+      <Divider />
+      <button
+        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
+        @click="downloadAvatar"
+      >
+        <i class="ph-download-simple" style="font-size: 28px"></i>
+        <span class="text-lg">下载</span>
+      </button>
+    </div>
   </div>
 </template>
 <style></style>

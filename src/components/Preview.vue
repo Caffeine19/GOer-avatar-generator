@@ -15,7 +15,7 @@ defineProps({
   <div class="shrink flex items-center justify-center w-4/5">
     <Avatar
       id="preview"
-      class="md:max-h-lg md:max-w-lg max-h-48 max-w-48"
+      class="lg:max-w-lg w-4/5 max-w-[200px]"
       :color="editingAvatar?.color"
       :radius="editingAvatar?.radius"
       :effect="editingAvatar.effect"
