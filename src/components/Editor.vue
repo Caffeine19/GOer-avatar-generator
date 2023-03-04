@@ -22,7 +22,7 @@ defineProps({
 </script>
 <template>
   <div
-    class="shadow-slate-900/5 dark:shadow-black/20 rounded-xl dark:border-slate-700 dark:bg-slate-800 border-slate-100 h-full max-w-lg p-4 space-y-4 overflow-y-auto bg-white border shadow-xl"
+    class="shadow-slate-900/5 dark:shadow-black/20 md:rounded-xl dark:border-slate-700 dark:bg-slate-800 border-slate-100 rounded-t-xl md:border h-full max-w-lg p-4 space-y-4 overflow-y-auto bg-white border-t shadow-xl"
   >
     <EditorSection title-icon="ph-palette" title-text="Color/颜色">
       <template #content>
@@ -199,38 +199,15 @@ defineProps({
 
     <EditorSection title-icon="ph-code" title-text="Code/咒语">
       <template v-slot:content>
-        <pre class="">
+        <pr class=""
+          >>
           <code class="language-json rounded-lg">
-{
-    "color": {
-        "primaryColor": "#00ff00",
-        "secondaryColor": {
-            "auto": false,
-            "value": "#ff00ff"
-        }
-    },
-    "eyes": {
-        "left": {
-            "scale": 1.2,
-            "x": 20,
-            "y": 12
-        },
-        "right": {
-            "scale": 1.2,
-            "x": 20,
-            "y": 12
-        }
-    },
-    "effect": {
-        "blur": 0.9
-    },
-    "roundCorner": {
-        "borderRadius": 12
-    },
-    "decoration": null
-}
+            { "color": { "primaryColor": "#00ff00", "secondaryColor": { "auto": false, "value":
+            "#ff00ff" } }, "eyes": { "left": { "scale": 1.2, "x": 20, "y": 12 }, "right": { "scale":
+            1.2, "x": 20, "y": 12 } }, "effect": { "blur": 0.9 }, "roundCorner": { "borderRadius":
+            12 }, "decoration": null }
           </code>
-        </pre>
+        </pr>
       </template>
     </EditorSection>
   </div>

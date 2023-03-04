@@ -9,7 +9,7 @@ import type { IUpdateEyes } from './types/updateEyes'
 
 const editingAvatar = reactive<IAvatar>({
   color: { primaryColor: undefined, secondaryColor: undefined, backgroundColor: undefined },
-  radius: undefined,
+  radius: 16,
   effect: {
     blur: 0
   },
@@ -57,16 +57,18 @@ const updateEyes: IUpdateEyes = (
 </script>
 
 <template>
-  <div class="flex items-center justify-between w-screen h-screen p-12 space-x-12">
+  <div
+    class="md:flex-row md:p-12 md:space-x-12 md:space-y-0 flex flex-col items-center justify-between w-screen h-screen p-0 space-y-4"
+  >
     <div
-      class="basis-7/12 flex flex-col items-center justify-between h-full space-y-8 overflow-y-auto"
+      class="basis-6/12 md:basis-7/12 md:p-0 flex flex-col items-center justify-between w-full h-full p-3 space-y-8 overflow-y-auto"
     >
       <Header :editingAvatar="editingAvatar"></Header>
       <Preview :editingAvatar="editingAvatar"></Preview>
       <Footer></Footer>
     </div>
     <Editor
-      class="basis-5/12 2xl:basis-4/12"
+      class="md:basis-5/12 2xl:basis-4/12 basis-6/12"
       :editingAvatar="editingAvatar"
       :updateColor="updateColor"
       :updateRadius="updateRadius"

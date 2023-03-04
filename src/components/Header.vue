@@ -55,9 +55,12 @@ const downloadAvatar = () => {
     class="rounded-xl shadow-slate-900/5 dark:shadow-black/20 border-slate-100 2xl:w-4/5 dark:border-slate-700 dark:bg-slate-800 flex items-center justify-between w-full px-4 py-3 bg-white border shadow-xl"
   >
     <div class="flex items-center space-x-3">
-      <Avatar class="xl:w-16 xl:h-16 w-12 h-12 -mt-4" :color="logoColor"></Avatar>
+      <Avatar
+        class="xl:w-16 xl:h-16 md:w-12 md:h-12 md:-mt-3 w-8 h-8 -mt-2"
+        :color="logoColor"
+      ></Avatar>
       <h1
-        class="cartograph-cf-regular-italic text-gradient xl:text-2xl text-xl"
+        class="cartograph-cf-regular-italic text-gradient xl:text-2xl md:text-xl text-lg"
         :style="{
           'background-image': `-webkit-linear-gradient(right, ${
             logoColor.primaryColor || '#61BCE2'
@@ -67,12 +70,12 @@ const downloadAvatar = () => {
         GOer-avatar-generator
       </h1>
     </div>
-    <div class="flex items-stretch space-x-4">
+    <div class="xl:flex items-stretch hidden space-x-4">
       <button
         class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
       >
         <i class="ph-floppy-disk" style="font-size: 28px"></i>
-        <span class="hidden text-lg">保存</span>
+        <span class="xl:block hidden text-lg">保存</span>
       </button>
       <Divider direction="vertical" />
       <button
@@ -83,6 +86,11 @@ const downloadAvatar = () => {
         <span class="xl:block hidden text-lg">下载</span>
       </button>
     </div>
+    <button
+      class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 xl:hidden flex items-center p-1 space-x-3 transition-colors border border-transparent rounded-md"
+    >
+      <i class="ph-list-dashes" style="font-size: 28px"></i>
+    </button>
   </div>
 </template>
 <style></style>
