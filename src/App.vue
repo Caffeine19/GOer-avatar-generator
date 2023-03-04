@@ -68,7 +68,7 @@ const updateEyes: IUpdateEyes = (
       <Footer></Footer>
     </div>
     <Editor
-      class="md:basis-5/12 2xl:basis-4/12 basis-6/12"
+      class="md:basis-5/12 2xl:basis-4/12 basis-6/12 w-full"
       :editingAvatar="editingAvatar"
       :updateColor="updateColor"
       :updateRadius="updateRadius"
