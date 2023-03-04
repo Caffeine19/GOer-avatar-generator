@@ -42,7 +42,7 @@ const sampleAvatars = reactive<IAvatar[]>([
 </script>
 <template>
   <div
-    class="border-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:shadow-black/20 shadow-slate-900/5 rounded-xl md:px-4 md:py-3 md:space-x-5 flex items-center max-w-full px-2 py-2 space-x-3 overflow-hidden bg-white border shadow-xl"
+    class="border-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:shadow-black/20 shadow-slate-900/5 rounded-xl sm:px-4 sm:py-3 sm:space-x-5 flex items-center max-w-full px-2 py-2 space-x-3 overflow-hidden bg-white border shadow-xl"
   >
     <button class="text-slate-400 flex items-center justify-center">
       <i class="ph-caret-left" style="font-size: 28px"></i>
@@ -54,7 +54,7 @@ const sampleAvatars = reactive<IAvatar[]>([
           :key="index"
           :color="sample.color"
           :radius="sample.radius"
-          class="border-slate-200 dark:border-slate-600 md:w-16 md:h-16 w-12 h-12 p-1 border rounded-md"
+          class="border-slate-200 dark:border-slate-600 sm:w-16 sm:h-16 w-12 h-12 p-1 border rounded-md"
         ></Avatar>
       </div>
     </div>
