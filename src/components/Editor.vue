@@ -22,7 +22,7 @@ defineProps({
 </script>
 <template>
   <div
-    class="shadow-slate-900/5 dark:shadow-black/20 sm:rounded-xl dark:border-slate-700 dark:bg-slate-800 border-slate-100 rounded-t-xl sm:border h-full max-w-lg p-4 space-y-4 overflow-y-auto bg-white border-t shadow-xl"
+    class="shadow-slate-900/5 dark:shadow-black/20 md:rounded-xl dark:border-slate-700 dark:bg-slate-800 border-slate-100 rounded-t-xl md:border h-full max-w-lg p-4 space-y-4 overflow-y-auto bg-white border-t shadow-xl"
   >
     <EditorSection title-icon="ph-palette" title-text="Color/颜色">
       <template #content>

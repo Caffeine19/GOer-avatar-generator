@@ -58,17 +58,17 @@ const updateEyes: IUpdateEyes = (
 
 <template>
   <div
-    class="sm:flex-row sm:p-12 sm:space-x-12 sm:space-y-0 flex flex-col items-center justify-between w-screen h-screen p-0 space-y-4"
+    class="md:flex-row md:p-12 md:space-x-12 md:space-y-0 flex flex-col items-center justify-between w-screen h-screen p-0 space-y-4"
   >
     <div
-      class="basis-6/12 sm:basis-7/12 sm:p-0 flex flex-col items-center justify-between w-full h-full p-3 space-y-8 overflow-y-auto"
+      class="basis-6/12 md:basis-7/12 md:p-0 flex flex-col items-center justify-between w-full h-full p-3 space-y-8 overflow-y-auto"
     >
       <Header :editingAvatar="editingAvatar"></Header>
       <Preview :editingAvatar="editingAvatar"></Preview>
       <Footer></Footer>
     </div>
     <Editor
-      class="sm:basis-5/12 2xl:basis-4/12 basis-6/12"
+      class="md:basis-5/12 2xl:basis-4/12 basis-6/12"
       :editingAvatar="editingAvatar"
       :updateColor="updateColor"
       :updateRadius="updateRadius"
