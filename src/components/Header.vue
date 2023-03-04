@@ -61,11 +61,11 @@ const toggleMenu = () => {
   >
     <div class="flex items-center space-x-3">
       <Avatar
-        class="xl:w-16 xl:h-16 md:w-12 md:h-12 md:-mt-3 w-8 h-8 -mt-2"
+        class="xl:w-16 xl:h-16 sm:w-12 sm:h-12 sm:-mt-3 w-8 h-8 -mt-2"
         :color="logoColor"
       ></Avatar>
       <h1
-        class="cartograph-cf-regular-italic text-gradient xl:text-2xl md:text-xl text-lg"
+        class="cartograph-cf-regular-italic text-gradient xl:text-2xl sm:text-xl text-lg"
         :style="{
           'background-image': `-webkit-linear-gradient(right, ${
             logoColor.primaryColor || '#61BCE2'
