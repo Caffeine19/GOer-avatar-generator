@@ -52,12 +52,12 @@ const downloadAvatar = () => {
 </script>
 <template>
   <div
-    class="rounded-xl shadow-slate-900/5 dark:shadow-black/20  border-slate-100 flex items-center justify-between w-4/5 px-4 py-3 bg-white border shadow-xl dark:border-slate-700 dark:bg-slate-800"
+    class="rounded-xl shadow-slate-900/5 dark:shadow-black/20 border-slate-100 2xl:w-4/5 dark:border-slate-700 dark:bg-slate-800 flex items-center justify-between w-full px-4 py-3 bg-white border shadow-xl"
   >
     <div class="flex items-center space-x-3">
-      <Avatar class="w-16 h-16 -mt-4" :color="logoColor"></Avatar>
+      <Avatar class="xl:w-16 xl:h-16 w-12 h-12 -mt-4" :color="logoColor"></Avatar>
       <h1
-        class="cartograph-cf-regular-italic text-gradient text-2xl"
+        class="cartograph-cf-regular-italic text-gradient xl:text-2xl text-xl"
         :style="{
           'background-image': `-webkit-linear-gradient(right, ${
             logoColor.primaryColor || '#61BCE2'
@@ -72,7 +72,7 @@ const downloadAvatar = () => {
         class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
       >
         <i class="ph-floppy-disk" style="font-size: 28px"></i>
-        <span class="text-lg">保存</span>
+        <span class="hidden text-lg">保存</span>
       </button>
       <Divider direction="vertical" />
       <button
@@ -80,7 +80,7 @@ const downloadAvatar = () => {
         @click="downloadAvatar"
       >
         <i class="ph-download-simple" style="font-size: 28px"></i>
-        <span class="text-lg">下载</span>
+        <span class="xl:block hidden text-lg">下载</span>
       </button>
     </div>
   </div>

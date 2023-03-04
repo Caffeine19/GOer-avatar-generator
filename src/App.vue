@@ -57,7 +57,7 @@ const updateEyes: IUpdateEyes = (
 </script>
 
 <template>
-  <div class="flex items-center justify-between w-screen h-screen p-12">
+  <div class="flex items-center justify-between w-screen h-screen p-12 space-x-12">
     <div
       class="basis-7/12 flex flex-col items-center justify-between h-full space-y-8 overflow-y-auto"
     >
@@ -66,7 +66,7 @@ const updateEyes: IUpdateEyes = (
       <Footer></Footer>
     </div>
     <Editor
-      class="basis-3/12"
+      class="basis-5/12 2xl:basis-4/12"
       :editingAvatar="editingAvatar"
       :updateColor="updateColor"
       :updateRadius="updateRadius"
