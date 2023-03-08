@@ -33,14 +33,16 @@ watch(
         name="volume"
         :min="min"
         :max="max"
-        class="border-slate-200 opacity-60 dark:border-slate-600 w-full h-5 border rounded"
+        class="border-slate-200 opacity-60 dark:border-slate-600 w-full h-5 transition-colors border rounded"
         v-model="localRange"
       />
     </div>
     <div
-      class="border-slate-200 dark:border-slate-600 flex items-center justify-center w-10 h-6 overflow-hidden border rounded"
+      class="border-slate-200 dark:border-slate-600 flex items-center justify-center w-10 h-6 overflow-hidden transition-colors border rounded"
     >
-      <p class="text-slate-700 cartograph-cf-regular dark:text-slate-100 text-base">
+      <p
+        class="text-slate-700 cartograph-cf-regular dark:text-slate-100 text-base transition-colors"
+      >
         {{ localRange }}
       </p>
     </div>
@@ -77,6 +79,6 @@ input[type='range']:focus {
 
 input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none !important;
-  @apply bg-slate-300 h-7 cursor-ew-resize dark:bg-slate-500 w-4 rounded;
+  @apply bg-slate-300 h-7 cursor-ew-resize dark:bg-slate-500 w-4 transition-colors rounded;
 }
 </style>

@@ -4,7 +4,9 @@ defineEmits<{ (e: 'updateValue', value: string): void }>()
 </script>
 <template>
   <div class="flex items-center space-x-3">
-    <div class="border-slate-200 dark:border-slate-600 w-fit relative p-1 border rounded">
+    <div
+      class="border-slate-200 dark:border-slate-600 w-fit relative p-1 transition-colors border rounded"
+    >
       <label for="colorWell">
         <div
           class="w-16 h-5 rounded cursor-pointer"
@@ -20,9 +22,13 @@ defineEmits<{ (e: 'updateValue', value: string): void }>()
       />
     </div>
     <div
-      class="border-slate-200 h-7 flex items-center dark:border-slate-600 justify-center w-24 overflow-hidden border rounded"
+      class="border-slate-200 h-7 dark:border-slate-600 flex items-center justify-center w-24 overflow-hidden transition-colors border rounded"
     >
-      <p class="text-slate-700 cartograph-cf-regular text-base dark:text-slate-100">{{ value }}</p>
+      <p
+        class="text-slate-700 cartograph-cf-regular dark:text-slate-100 text-base transition-colors"
+      >
+        {{ value }}
+      </p>
     </div>
   </div>
 </template>

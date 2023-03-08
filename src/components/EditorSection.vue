@@ -15,7 +15,7 @@ const toggleSectionContent = () => {
 <template>
   <div name="section" class="space-y-3">
     <div name="section-title" class="flex items-center justify-between">
-      <div class="text-slate-900 dark:text-white flex items-center space-x-3">
+      <div class="text-slate-900 dark:text-white flex items-center space-x-3 transition-colors">
         <i :class="titleIcon" style="font-size: 28px"></i>
         <h2 class="cartograph-cf-regular-italic text-xl">{{ titleText }}</h2>
       </div>

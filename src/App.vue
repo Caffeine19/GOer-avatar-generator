@@ -3,10 +3,13 @@ import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import Preview from './components/Preview.vue'
 import Editor from './components/Editor.vue'
-import { reactive } from 'vue'
+import { onMounted, provide, reactive, watch } from 'vue'
 import type { IAvatar, IColor, IEffect, IEyes } from './types/avatar'
 import type { IUpdateEyes } from './types/updateEyes'
-
+import { useStorage } from './hooks/useStorage'
+import { THEME } from '@/types/theme'
+import { themeKey, toggleThemeKey } from './symbols/theme'
+import type { Ref } from 'vue'
 const editingAvatar = reactive<IAvatar>({
   color: { primaryColor: undefined, secondaryColor: undefined, backgroundColor: undefined },
   radius: 16,
@@ -38,7 +41,7 @@ const updateRadius = (value: number) => {
 }
 
 const updateEffect = (key: keyof IEffect, value: number) => {
-  console.log(typeof value)
+  // console.log(typeof value)
   if (editingAvatar.effect) editingAvatar.effect[key] = value
 }
 
@@ -47,13 +50,40 @@ const updateEyes: IUpdateEyes = (
   key: keyof IEyes['leftEye'] | keyof IEyes['rightEye'],
   value: number
 ) => {
-  console.log(whichOne, key, value)
+  // console.log(whichOne, key, value)
   if (editingAvatar?.eyes) {
-    console.log(true)
+    // console.log(true)
     editingAvatar.eyes[whichOne][key] = value
-    console.log(editingAvatar.eyes[whichOne][key])
+    // console.log(editingAvatar.eyes[whichOne][key])
   }
 }
+
+const theme = useStorage('theme', null) as Ref<THEME>
+provide(themeKey, theme)
+const toggleTheme = () => {
+  theme.value = theme.value == THEME.LIGHT ? THEME.DARK : THEME.LIGHT
+}
+provide(toggleThemeKey, toggleTheme)
+
+watch(theme, (newVal) => {
+  if (newVal === THEME.DARK) {
+    console.log(newVal)
+    document.documentElement.classList.add('dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+  }
+})
+
+onMounted(() => {
+  if (
+    theme.value === THEME.DARK ||
+    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  ) {
+    theme.value = THEME.DARK
+  } else {
+    theme.value = THEME.LIGHT
+  }
+})
 </script>
 
 <template>

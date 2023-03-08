@@ -22,12 +22,12 @@ defineProps({
 </script>
 <template>
   <div
-    class="shadow-slate-900/5 dark:shadow-black/20 md:rounded-xl dark:border-slate-700 dark:bg-slate-800 border-slate-100 rounded-t-xl md:border md:max-w-[400px] h-full p-4 space-y-4 overflow-y-auto bg-white border-t shadow-xl"
+    class="shadow-slate-900/5 dark:shadow-black/20 md:rounded-xl transition-colors dark:border-slate-700 dark:bg-slate-800 border-slate-100 rounded-t-xl md:border md:max-w-[400px] h-full p-4 space-y-4 overflow-y-auto bg-white border-t shadow-xl"
   >
     <EditorSection title-icon="ph-palette" title-text="Color/颜色">
       <template #content>
         <div class="space-y-1.5">
-          <h3 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">
+          <h3 class="cartograph-cf-regular text-slate-700 dark:text-slate-100 transition-colors">
             primary color/首要颜色
           </h3>
           <ColorSelector
@@ -36,7 +36,7 @@ defineProps({
           ></ColorSelector>
         </div>
         <div class="space-y-1.5">
-          <h3 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">
+          <h3 class="cartograph-cf-regular text-slate-700 dark:text-slate-100 transition-colors">
             secondary color/次要颜色
           </h3>
           <ColorSelector
@@ -45,7 +45,7 @@ defineProps({
           ></ColorSelector>
         </div>
         <div class="space-y-1.5">
-          <h3 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">
+          <h3 class="cartograph-cf-regular text-slate-700 dark:text-slate-100 transition-colors">
             background color/背景颜色
           </h3>
           <ColorSelector
@@ -60,10 +60,18 @@ defineProps({
     <EditorSection title-icon="ph-atom" title-text="Eyes/眼睛">
       <template v-slot:content>
         <div class="space-y-2">
-          <h3 class="cartograph-cf-regular text-slate-800 dark:text-slate-50 text-base">left/左</h3>
+          <h3
+            class="cartograph-cf-regular text-slate-800 dark:text-slate-50 text-base transition-colors"
+          >
+            left/左
+          </h3>
           <div class="space-y-2">
             <div class="flex items-center justify-between space-x-4">
-              <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">Scale</h4>
+              <h4
+                class="cartograph-cf-regular text-slate-700 dark:text-slate-100 transition-colors"
+              >
+                Scale
+              </h4>
               <Slider
                 class="basis-4/5"
                 :max="300"
@@ -76,7 +84,11 @@ defineProps({
               ></Slider>
             </div>
             <div class="flex items-center justify-between space-x-4">
-              <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">X</h4>
+              <h4
+                class="cartograph-cf-regular text-slate-700 dark:text-slate-100 transition-colors"
+              >
+                X
+              </h4>
               <Slider
                 class="basis-4/5"
                 :range="editingAvatar.eyes?.leftEye.x || 0"
@@ -90,7 +102,11 @@ defineProps({
               ></Slider>
             </div>
             <div class="flex items-center justify-between space-x-4">
-              <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">Y</h4>
+              <h4
+                class="cartograph-cf-regular text-slate-700 dark:text-slate-100 transition-colors"
+              >
+                Y
+              </h4>
               <Slider
                 class="basis-4/5"
                 :range="editingAvatar.eyes?.leftEye.y || 0"
@@ -106,12 +122,18 @@ defineProps({
           </div>
         </div>
         <div class="space-y-2">
-          <h3 class="cartograph-cf-regular text-slate-800 dark:text-slate-50 text-base">
+          <h3
+            class="cartograph-cf-regular text-slate-800 dark:text-slate-50 text-base transition-colors"
+          >
             right/右
           </h3>
           <div class="space-y-2">
             <div class="flex items-center justify-between space-x-4">
-              <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">Scale</h4>
+              <h4
+                class="cartograph-cf-regular text-slate-700 dark:text-slate-100 transition-colors"
+              >
+                Scale
+              </h4>
               <Slider
                 class="basis-4/5"
                 :range="editingAvatar.eyes?.rightEye.scale || 1"
@@ -124,7 +146,11 @@ defineProps({
               ></Slider>
             </div>
             <div class="flex items-center justify-between space-x-4">
-              <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">X</h4>
+              <h4
+                class="cartograph-cf-regular text-slate-700 dark:text-slate-100 transition-colors"
+              >
+                X
+              </h4>
               <Slider
                 class="basis-4/5"
                 :range="editingAvatar.eyes?.rightEye.x || 0"
@@ -138,7 +164,11 @@ defineProps({
               ></Slider>
             </div>
             <div class="flex items-center justify-between space-x-4">
-              <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">Y</h4>
+              <h4
+                class="cartograph-cf-regular text-slate-700 dark:text-slate-100 transition-colors"
+              >
+                Y
+              </h4>
               <Slider
                 class="basis-4/5"
                 :range="editingAvatar.eyes?.rightEye.y || 0"
@@ -155,7 +185,7 @@ defineProps({
         </div>
       </template>
       <template v-slot:remark>
-        <p class="text-slate-300 dark:text-slate-500 text-xs font-light">
+        <p class="text-slate-300 dark:text-slate-500 text-xs font-light transition-colors">
           *大小眼往往被作为判定高智慧人士的依据之一
         </p>
       </template>
@@ -165,7 +195,9 @@ defineProps({
     <EditorSection title-icon="ph-magic-wand" title-text="Effect/特效">
       <template v-slot:content>
         <div class="flex items-center justify-between space-x-4">
-          <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">Blur</h4>
+          <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100 transition-colors">
+            Blur
+          </h4>
           <Slider
             :max="20"
             class="basis-4/5"
@@ -175,7 +207,7 @@ defineProps({
         </div>
       </template>
       <template v-slot:remark
-        ><p class="text-slate-300 dark:text-slate-500 text-xs font-light">
+        ><p class="text-slate-300 dark:text-slate-500 text-xs font-light transition-colors">
           *我在制作的过程中，保留了一部分模糊，因为我觉得，只有保留一部分模糊，才知道你用的是网图（骄傲）.jpg
         </p></template
       >
@@ -185,7 +217,9 @@ defineProps({
     <EditorSection title-icon="ph-planet" title-text="Round Corner/圆角">
       <template v-slot:content>
         <div class="flex items-center justify-between space-x-4">
-          <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100">Radius</h4>
+          <h4 class="cartograph-cf-regular text-slate-700 dark:text-slate-100 transition-colors">
+            Radius
+          </h4>
           <Slider
             class="basis-4/5"
             :range="editingAvatar.radius || 0"
