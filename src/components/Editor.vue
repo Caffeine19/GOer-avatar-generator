@@ -1,23 +1,60 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
+import { computed, onMounted, ref, watch, type PropType } from 'vue'
+
 import ColorSelector from './ColorSelector.vue'
 import Slider from './Slider.vue'
 import Divider from './Divider.vue'
 import EditorSection from './EditorSection.vue'
 
-import type { PropType } from 'vue'
 import type { IAvatar } from '@/types/avatar'
 import type { IUpdateColor } from '@/types/updateColor'
 import type { IUpdateRadius } from '@/types/updateRadius'
 import type { IUpdateEffect } from '@/types/updateEffect'
 import type { IUpdateEyes } from '@/types/updateEyes'
 
-defineProps({
+import AvatarCode from './AvatarCode.vue'
+
+const props = defineProps({
   editingAvatar: { type: Object as PropType<IAvatar>, required: true },
   updateColor: { type: Function as PropType<IUpdateColor>, required: true },
   updateRadius: { type: Function as PropType<IUpdateRadius>, required: true },
   updateEffect: { type: Function as PropType<IUpdateEffect>, required: true },
   updateEyes: { type: Function as PropType<IUpdateEyes>, required: true }
+})
+
+
+const code = computed(() => {
+  const c = `{
+    "color": {
+        "primaryColor": "${props.editingAvatar.color?.primaryColor}",
+        "secondaryColor": {
+            "auto": false,
+            "value": "${props.editingAvatar.color?.secondaryColor}"
+        },
+        "backgroundColor": "${props.editingAvatar.color?.backgroundColor}",
+    },
+    "eyes": {
+        "left": {
+            "scale": ${props.editingAvatar.eyes?.leftEye.scale},
+            "x": ${props.editingAvatar.eyes?.leftEye.x},
+            "y": ${props.editingAvatar.eyes?.leftEye.y}
+        },
+        "right": {
+            "scale": ${props.editingAvatar.eyes?.rightEye.scale},
+            "x": ${props.editingAvatar.eyes?.rightEye.x},
+            "y": ${props.editingAvatar.eyes?.rightEye.y}
+        }
+    },
+    "effect": {
+        "blur": ${props.editingAvatar.effect?.blur},
+    },
+    "roundCorner": {
+        "borderRadius": ${props.editingAvatar.radius},
+    },
+    "decoration": null
+}`
+  return c
 })
 </script>
 <template>
@@ -233,15 +270,7 @@ defineProps({
 
     <EditorSection title-icon="ph-code" title-text="Code/咒语">
       <template v-slot:content>
-        <pr class=""
-          >>
-          <code class="language-json rounded-lg">
-            { "color": { "primaryColor": "#00ff00", "secondaryColor": { "auto": false, "value":
-            "#ff00ff" } }, "eyes": { "left": { "scale": 1.2, "x": 20, "y": 12 }, "right": { "scale":
-            1.2, "x": 20, "y": 12 } }, "effect": { "blur": 0.9 }, "roundCorner": { "borderRadius":
-            12 }, "decoration": null }
-          </code>
-        </pr>
+        <AvatarCode :code="code"></AvatarCode>
       </template>
     </EditorSection>
   </div>
