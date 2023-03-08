@@ -1,7 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-
+import { themeKey } from '@/symbols/theme'
+import { computed, inject, ref, watch } from 'vue'
+import { THEME } from '@/types/theme'
 const percent = ref()
 const props = withDefaults(defineProps<{ min?: number; max?: number; range?: number }>(), {
   min: 0,
@@ -23,6 +24,11 @@ watch(
   },
   { immediate: true }
 )
+
+const theme = inject(themeKey)
+
+const sliderDefaultColor = computed(() => (theme?.value == THEME.LIGHT ? '#fff' : '#1e293b'))
+const sliderActiveColor = computed(() => (theme?.value === THEME.LIGHT ? '#f1f5f9' : '#334155'))
 </script>
 <template>
   <div class="flex items-center space-x-3">
@@ -57,21 +63,19 @@ input[type='range'] {
     linear,
     left top,
     right top,
-    color-stop(v-bind(percent + '%'), #f1f5f9),
-    color-stop(v-bind(percent + '%'), #fff)
+    color-stop(v-bind(percent + '%'), v-bind(sliderActiveColor)),
+    color-stop(v-bind(percent + '%'), v-bind(sliderDefaultColor))
   );
 }
-@media (prefers-color-scheme: dark) {
-  input[type='range'] {
-    background-image: -webkit-gradient(
-      linear,
-      left top,
-      right top,
-      color-stop(v-bind(percent + '%'), #334155),
-      color-stop(v-bind(percent + '%'), #1e293b)
-    );
-  }
-}
+/* input[type='range'].test2 {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(v-bind(percent + '%'), #334155),
+    color-stop(v-bind(percent + '%'), #1e293b)
+  );
+} */
 input[type='range']:focus {
   outline: none;
   @apply opacity-100;

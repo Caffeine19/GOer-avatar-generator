@@ -65,14 +65,18 @@ const toggleTheme = () => {
 }
 provide(toggleThemeKey, toggleTheme)
 
-watch(theme, (newVal) => {
-  if (newVal === THEME.DARK) {
-    console.log(newVal)
-    document.documentElement.classList.add('dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-  }
-})
+watch(
+  theme,
+  (newVal) => {
+    if (newVal === THEME.DARK) {
+      console.log(newVal)
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  },
+  { immediate: true }
+)
 
 onMounted(() => {
   if (

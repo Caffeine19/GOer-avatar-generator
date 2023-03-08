@@ -20,7 +20,7 @@ const toggleSectionContent = () => {
         <h2 class="cartograph-cf-regular-italic text-xl">{{ titleText }}</h2>
       </div>
       <button
-        class="hover:bg-slate-700 hover:border-slate-900 flex items-center justify-center p-1 transition-transform duration-300 border border-transparent rounded-full"
+        class="dark:hover:bg-slate-700 hover:bg-slate-100 hover:border-slate-50 dark:hover:border-slate-900 flex items-center justify-center p-1 transition-transform duration-300 border border-transparent rounded-full"
         @click="toggleSectionContent"
         :class="isSectionContentCollapsed ? 'rotate-0' : 'rotate-180'"
       >
