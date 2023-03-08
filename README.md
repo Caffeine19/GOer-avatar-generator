@@ -13,7 +13,7 @@
 - 设计资源-figma:
   [https://www.figma.com/file/jLbsClfoi4ByRs7Sq1b9d4/GOer-avatar-generator?node-id=0%3A1&t=CQO3Bi1IAqUSKQHj-1](https://www.figma.com/file/jLbsClfoi4ByRs7Sq1b9d4/GOer-avatar-generator?node-id=0%3A1&t=CQO3Bi1IAqUSKQHj-1)
 - 文档-notion
-  [Notion – The all-in-one workspace for your notes, tasks, wikis, and databases.](https://www.notion.so/GOer-avatar-genrator-7ccf60e2b02d40d19e2a6e3768dfa147?pvs=4)
+  [GOer-avatar-genrator](https://candied-soy-d64.notion.site/GOer-avatar-genrator-7ccf60e2b02d40d19e2a6e3768dfa147)
 
 ## 🎨 界面设计
 
