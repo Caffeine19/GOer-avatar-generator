@@ -1,19 +1,18 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed, onMounted, ref, watch, type PropType } from 'vue'
+import { computed,  type PropType } from 'vue'
 
 import ColorSelector from './ColorSelector.vue'
 import Slider from './Slider.vue'
 import Divider from './Divider.vue'
 import EditorSection from './EditorSection.vue'
+import AvatarCode from './AvatarCode.vue'
 
 import type { IAvatar } from '@/types/avatar'
 import type { IUpdateColor } from '@/types/updateColor'
 import type { IUpdateRadius } from '@/types/updateRadius'
 import type { IUpdateEffect } from '@/types/updateEffect'
 import type { IUpdateEyes } from '@/types/updateEyes'
-
-import AvatarCode from './AvatarCode.vue'
 
 const props = defineProps({
   editingAvatar: { type: Object as PropType<IAvatar>, required: true },
