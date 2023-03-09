@@ -33,17 +33,19 @@ export default defineComponent({
       document.body.removeChild(textarea)
     }
     return () =>
-      h('pre', { className: 'bg-[#1a1b26] m-4 p-4 overflow-auto rounded-lg relative' }, [
-        h('code', { innerHTML: highlightedCode.value.value }),
-        h(
-          'button',
-          {
-            className:
-              'transition-colors flex items-center justify-center rounded-bl bg-[#62658f]/40 hover:bg-[#62658f]/60 text-slate-50 absolute top-0 right-0 rounded-tr-lg p-2',
-            onClick: writeToClipboard
-          },
-          [h('i', { className: 'ph-clipboard', style: { fontSize: '24px' } })]
-        )
+      h('div', { className: 'relative m-4 p-4 bg-[#1a1b26] rounded-lg' }, [
+        h('pre', { className: 'overflow-auto' }, [
+          h('code', { innerHTML: highlightedCode.value.value }),
+          h(
+            'button',
+            {
+              className:
+                'transition-colors flex items-center justify-center rounded-bl bg-[#62658f]/40 hover:bg-[#62658f]/60 text-slate-50 absolute top-0 right-0 rounded-tr-lg p-2',
+              onClick: writeToClipboard
+            },
+            [h('i', { className: 'ph-clipboard', style: { fontSize: '24px' } })]
+          )
+        ])
       ])
   }
 })
