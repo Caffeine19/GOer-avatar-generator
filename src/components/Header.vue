@@ -147,7 +147,7 @@ const toggleMenu = () => {
           v-if="theme == THEME.LIGHT"
         >
           <i class="ph-moon-stars" style="font-size: 28px"></i>
-          <span class="text-lg">日！</span>
+          <span class="text-lg">夜~</span>
         </button>
         <button
           class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
@@ -155,7 +155,7 @@ const toggleMenu = () => {
           v-else
         >
           <i class="ph-sun" style="font-size: 28px"></i>
-          <span class="text-lg">夜~</span>
+          <span class="text-lg">日！</span>
         </button>
       </div>
     </div>
