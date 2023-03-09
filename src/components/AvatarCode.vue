@@ -18,14 +18,19 @@ export default defineComponent({
       return hljs.highlight(code.value, { language: 'json' })
     })
     const writeToClipboard = () => {
+      const textarea = document.createElement('textarea')
+      document.body.appendChild(textarea)
+      textarea.value = '复制我呀'
+      textarea.select()
       navigator.clipboard
         .writeText(code.value)
         .then(function () {
-          alert('yeah!') // success
+          alert('save to clipboard!') // success
         })
         .catch(function () {
-          alert('err') // error
+          alert('copy failed') // error
         })
+      document.body.removeChild(textarea)
     }
     return () =>
       h('pre', { className: 'bg-[#1a1b26] m-4 p-4 overflow-auto rounded-lg relative' }, [
