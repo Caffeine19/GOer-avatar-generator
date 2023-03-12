@@ -9,7 +9,15 @@ const props = withDefaults(defineProps<{ min?: number; max?: number; range?: num
   max: 100,
   range: 50
 })
+
 const localRange = ref<string>(props.range.toString())
+watch(
+  () => props.range,
+  () => {
+    localRange.value = props.range.toString()
+  }
+)
+
 const emits = defineEmits<{
   (e: 'updateRange', value: number): void
 }>()
