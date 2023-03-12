@@ -184,7 +184,7 @@ onMounted(() => {
     >
       <Header :editingAvatar="editingAvatar"></Header>
       <Preview :editingAvatar="editingAvatar"></Preview>
-      <Footer></Footer>
+      <Footer :avatar-list="avatarList"></Footer>
     </div>
     <Editor
       class="md:basis-5/12 2xl:basis-4/12 basis-6/12 w-full"

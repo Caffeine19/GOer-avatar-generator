@@ -2,43 +2,14 @@
 <script setup lang="ts">
 import Avatar from './Avatar.vue'
 import type { IAvatar } from '@/types/avatar'
-import { reactive } from 'vue'
+import type { PropType } from 'vue'
 
-const sampleAvatars = reactive<IAvatar[]>([
-  {},
-  {
-    color: {
-      primaryColor: '#FFCBCB',
-      secondaryColor: '#FFE0E0',
-      backgroundColor: '#FAEFEF'
-    },
-    radius: 32
-  },
-  {
-    color: {
-      primaryColor: '#FFCB8F',
-      secondaryColor: '#FFE5C6',
-      backgroundColor: '#FFECD6'
-    },
-    radius: 32
-  },
-  {
-    color: {
-      primaryColor: '#FFF',
-      secondaryColor: '#000',
-      backgroundColor: '#E6E6E6'
-    },
-    radius: 32
-  },
-  {
-    color: {
-      primaryColor: '#d0bfff',
-      secondaryColor: '#b197fc',
-      backgroundColor: '#f3d9fa'
-    },
-    radius: 32
+defineProps({
+  avatarList: {
+    type: Array as PropType<IAvatar[]>,
+    required: true
   }
-])
+})
 </script>
 <template>
   <div
@@ -50,10 +21,10 @@ const sampleAvatars = reactive<IAvatar[]>([
     <div class="overflow-x-auto">
       <div class="w-fit flex items-center justify-center space-x-3">
         <Avatar
-          v-for="(sample, index) in sampleAvatars"
-          :key="index"
-          :color="sample.color"
-          :radius="sample.radius"
+          v-for="avatar in avatarList"
+          :key="avatar.id"
+          :color="avatar.color"
+          :radius="40"
           class="border-slate-200 dark:border-slate-600 md:w-16 md:h-16 w-12 h-12 p-1 transition-colors border rounded-md"
         ></Avatar>
       </div>
