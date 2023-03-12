@@ -13,8 +13,8 @@ const props = defineProps({ editingAvatar: { type: Object as PropType<IAvatar>, 
 
 const logoColor = computed(() => {
   return {
-    primaryColor: props.editingAvatar.color?.primaryColor,
-    secondaryColor: props.editingAvatar.color?.secondaryColor,
+    primaryColor: props.editingAvatar.color.primaryColor,
+    secondaryColor: props.editingAvatar.color.secondaryColor,
     backgroundColor: 'none'
   }
 })
@@ -59,6 +59,24 @@ const isMenuOpening = ref(false)
 const toggleMenu = () => {
   isMenuOpening.value = !isMenuOpening.value
 }
+
+const saveAvatar = () => {
+  //如果localStorage没有存入过
+  if (!('avatar-' + props.editingAvatar.id in localStorage)) {
+    const res = localStorage.getItem('avatarIdList')
+
+    if (res) {
+      const avatarIdList: IAvatar['id'][] = JSON.parse(res)
+      const newAvatarIdList = avatarIdList.unshift(props.editingAvatar.id)
+      localStorage.setItem('avatarIdList', JSON.stringify(newAvatarIdList))
+    } else {
+      //如果连一个空数组都不是
+      //localStorage内没有存过avatarIdList这个key
+      localStorage.setItem('avatarIdList', JSON.stringify([props.editingAvatar.id]))
+    }
+  }
+  localStorage.setItem('avatar-' + props.editingAvatar.id, JSON.stringify(props.editingAvatar))
+}
 </script>
 <template>
   <div
@@ -82,6 +100,7 @@ const toggleMenu = () => {
     </div>
     <div class="xl:flex items-stretch hidden space-x-2">
       <button
+        @click="saveAvatar"
         class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
       >
         <i class="ph-floppy-disk" style="font-size: 28px"></i>
@@ -122,6 +141,7 @@ const toggleMenu = () => {
       :class="isMenuOpening ? 'flex' : 'hidden'"
     >
       <button
+        @click="saveAvatar"
         class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
       >
         <i class="ph-floppy-disk" style="font-size: 28px"></i>

@@ -66,7 +66,7 @@ const code = computed(() => {
             primary color/首要颜色
           </h3>
           <ColorSelector
-            :value="editingAvatar?.color?.primaryColor || '#61BCE2'"
+            :value="editingAvatar.color?.primaryColor || '#61BCE2'"
             @update-value="(event) => updateColor('primaryColor', event)"
           ></ColorSelector>
         </div>
@@ -75,7 +75,7 @@ const code = computed(() => {
             secondary color/次要颜色
           </h3>
           <ColorSelector
-            :value="editingAvatar?.color?.secondaryColor || '#90D0EB'"
+            :value="editingAvatar.color?.secondaryColor || '#90D0EB'"
             @update-value="(event) => updateColor('secondaryColor', event)"
           ></ColorSelector>
         </div>
@@ -84,7 +84,7 @@ const code = computed(() => {
             background color/背景颜色
           </h3>
           <ColorSelector
-            :value="editingAvatar?.color?.backgroundColor || '#D2F4F0'"
+            :value="editingAvatar.color?.backgroundColor || '#D2F4F0'"
             @update-value="(event) => updateColor('backgroundColor', event)"
           ></ColorSelector>
         </div>
@@ -110,7 +110,7 @@ const code = computed(() => {
               <Slider
                 class="basis-4/5"
                 :max="300"
-                :range="editingAvatar.eyes?.leftEye.scale || 1"
+                :range="editingAvatar.eyes.leftEye.scale || 1"
                 @update-range="
                   (event) => {
                     updateEyes('leftEye', 'scale', event)
@@ -126,7 +126,7 @@ const code = computed(() => {
               </h4>
               <Slider
                 class="basis-4/5"
-                :range="editingAvatar.eyes?.leftEye.x || 0"
+                :range="editingAvatar.eyes.leftEye.x || 0"
                 :min="-50"
                 :max="150"
                 @update-range="
@@ -144,7 +144,7 @@ const code = computed(() => {
               </h4>
               <Slider
                 class="basis-4/5"
-                :range="editingAvatar.eyes?.leftEye.y || 0"
+                :range="editingAvatar.eyes.leftEye.y || 0"
                 :min="-80"
                 :max="80"
                 @update-range="
@@ -171,7 +171,7 @@ const code = computed(() => {
               </h4>
               <Slider
                 class="basis-4/5"
-                :range="editingAvatar.eyes?.rightEye.scale || 1"
+                :range="editingAvatar.eyes.rightEye.scale || 1"
                 :max="300"
                 @update-range="
                   (event) => {
@@ -188,7 +188,7 @@ const code = computed(() => {
               </h4>
               <Slider
                 class="basis-4/5"
-                :range="editingAvatar.eyes?.rightEye.x || 0"
+                :range="editingAvatar.eyes.rightEye.x || 0"
                 :min="-100"
                 :max="60"
                 @update-range="
@@ -206,7 +206,7 @@ const code = computed(() => {
               </h4>
               <Slider
                 class="basis-4/5"
-                :range="editingAvatar.eyes?.rightEye.y || 0"
+                :range="editingAvatar.eyes.rightEye.y || 0"
                 :min="-80"
                 :max="80"
                 @update-range="

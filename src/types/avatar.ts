@@ -5,9 +5,9 @@ type IColor = {
 }
 
 type ISingleEye = {
-  scale: number
-  x: number
-  y: number
+  scale?: number
+  x?: number
+  y?: number
 }
 
 type IEyes = {
@@ -18,14 +18,15 @@ type IEyes = {
 type IRadius = number
 
 type IEffect = {
-  blur: number
+  blur?: number
 }
 
 type IAvatar = {
-  color?: IColor
-  eyes?: IEyes
+  id: string
+  color: IColor
+  eyes: IEyes
   radius?: IRadius
-  effect?: IEffect
+  effect: IEffect
 }
 
 export { type IAvatar, type IColor, type IEffect, type IEyes }

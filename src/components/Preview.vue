@@ -16,8 +16,8 @@ defineProps({
     <Avatar
       id="preview"
       class="lg:max-w-lg w-4/5 max-w-[200px]"
-      :color="editingAvatar?.color"
-      :radius="editingAvatar?.radius"
+      :color="editingAvatar.color"
+      :radius="editingAvatar.radius"
       :effect="editingAvatar.effect"
       :eyes="editingAvatar.eyes"
     ></Avatar>

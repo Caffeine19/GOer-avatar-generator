@@ -3,46 +3,134 @@ import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import Preview from './components/Preview.vue'
 import Editor from './components/Editor.vue'
-import { onMounted, provide, reactive, watch } from 'vue'
+import { onMounted, provide, reactive, ref, watch } from 'vue'
 import type { IAvatar, IColor, IEffect, IEyes } from './types/avatar'
 import type { IUpdateEyes } from './types/updateEyes'
 import { useStorage } from './hooks/useStorage'
 import { THEME } from '@/types/theme'
 import { themeKey, toggleThemeKey } from './symbols/theme'
 import type { Ref } from 'vue'
-const editingAvatar = reactive<IAvatar>({
-  color: { primaryColor: undefined, secondaryColor: undefined, backgroundColor: undefined },
-  radius: 16,
-  effect: {
-    blur: 0
-  },
+
+const editingAvatar = ref<IAvatar>({
+  id: '佚名',
+  color: {},
   eyes: {
-    leftEye: {
-      x: 0,
-      y: 0,
-      scale: 100
-    },
-    rightEye: {
-      x: 0,
-      y: 0,
-      scale: 100
-    }
-  }
+    rightEye: {},
+    leftEye: {}
+  },
+  effect: {}
 })
 
-const updateColor = (key: keyof IColor, value: string) => {
-  if (editingAvatar.color) {
-    editingAvatar.color[key] = value
+const avatarList = reactive<IAvatar[]>([])
+
+const getAvatar = () => {
+  const res = localStorage.getItem('avatarIdList')
+  if (res) {
+    //如果之前有存过avatar
+    const avatarIdList: IAvatar['id'][] = JSON.parse(res)
+
+    avatarIdList.forEach((id) => {
+      const res = localStorage.getItem('avatar-' + id)
+      if (res) {
+        avatarList.push(JSON.parse(res))
+      }
+    })
+    editingAvatar.value = avatarList[0]
+  } else {
+    //如果之前没有存入过avatar
+    //则填充进预设的sample
+    const sampleIdList = ['原皮', '猛男粉', '🍌黄', '🐼熊猫', '小黑紫']
+    const sampleAvatarList: IAvatar[] = [
+      {
+        id: sampleIdList[0],
+        color: {},
+        eyes: {
+          rightEye: {},
+          leftEye: {}
+        },
+        effect: {}
+      },
+      {
+        id: sampleIdList[1],
+        color: {
+          primaryColor: '#FFCBCB',
+          secondaryColor: '#FFE0E0',
+          backgroundColor: '#FAEFEF'
+        },
+        radius: 32,
+        eyes: {
+          rightEye: {},
+          leftEye: {}
+        },
+        effect: {}
+      },
+      {
+        id: sampleIdList[2],
+        color: {
+          primaryColor: '#FFCB8F',
+          secondaryColor: '#FFE5C6',
+          backgroundColor: '#FFECD6'
+        },
+        radius: 32,
+        eyes: {
+          rightEye: {},
+          leftEye: {}
+        },
+        effect: {}
+      },
+      {
+        id: sampleIdList[3],
+        color: {
+          primaryColor: '#FFF',
+          secondaryColor: '#000',
+          backgroundColor: '#E6E6E6'
+        },
+        radius: 32,
+        eyes: {
+          rightEye: {},
+          leftEye: {}
+        },
+        effect: {}
+      },
+      {
+        id: sampleIdList[4],
+        color: {
+          primaryColor: '#d0bfff',
+          secondaryColor: '#b197fc',
+          backgroundColor: '#f3d9fa'
+        },
+        radius: 32,
+        eyes: {
+          rightEye: {},
+          leftEye: {}
+        },
+        effect: {}
+      }
+    ]
+    localStorage.setItem('avatarIdList', JSON.stringify(sampleIdList))
+    sampleAvatarList.forEach((sample) => {
+      localStorage.setItem('avatar-' + sample.id, JSON.stringify(sample))
+      avatarList.push(sample)
+    })
+    editingAvatar.value = avatarList[0]
   }
 }
 
+onMounted(() => {
+  getAvatar()
+})
+
+const updateColor = (key: keyof IColor, value: string) => {
+  editingAvatar.value.color[key] = value
+}
+
 const updateRadius = (value: number) => {
-  editingAvatar.radius = value
+  editingAvatar.value.radius = value
 }
 
 const updateEffect = (key: keyof IEffect, value: number) => {
   // console.log(typeof value)
-  if (editingAvatar.effect) editingAvatar.effect[key] = value
+  editingAvatar.value.effect[key] = value
 }
 
 const updateEyes: IUpdateEyes = (
@@ -51,11 +139,8 @@ const updateEyes: IUpdateEyes = (
   value: number
 ) => {
   // console.log(whichOne, key, value)
-  if (editingAvatar?.eyes) {
-    // console.log(true)
-    editingAvatar.eyes[whichOne][key] = value
-    // console.log(editingAvatar.eyes[whichOne][key])
-  }
+  editingAvatar.value.eyes[whichOne][key] = value
+  // console.log(editingAvatar.eyes[whichOne][key])
 }
 
 const theme = useStorage('theme', null) as Ref<THEME>
