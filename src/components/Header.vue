@@ -85,17 +85,15 @@ const toggleMenu = () => {
         class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
       >
         <i class="ph-floppy-disk" style="font-size: 28px"></i>
-        <span class="xl:block hidden text-lg">保存</span>
       </button>
-      <Divider direction="vertical" />
+      <Divider direction="vertical" percent="h-3/5" />
       <button
         class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
         @click="downloadAvatar"
       >
         <i class="ph-download-simple" style="font-size: 28px"></i>
-        <span class="xl:block hidden text-lg">下载</span>
       </button>
-      <Divider direction="vertical" />
+      <Divider direction="vertical" percent="h-3/5" />
       <div>
         <button
           class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
@@ -103,7 +101,6 @@ const toggleMenu = () => {
           v-if="theme == THEME.LIGHT"
         >
           <i class="ph-moon-stars" style="font-size: 28px"></i>
-          <span class="xl:block w-9 hidden text-lg">夜~</span>
         </button>
         <button
           class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
@@ -111,7 +108,6 @@ const toggleMenu = () => {
           v-else
         >
           <i class="ph-sun" style="font-size: 28px"></i>
-          <span class="xl:block w-9 hidden text-lg">日！</span>
         </button>
       </div>
     </div>
