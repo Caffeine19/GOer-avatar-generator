@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed,  type PropType } from 'vue'
+import { computed, type PropType } from 'vue'
 
 import ColorSelector from './ColorSelector.vue'
 import Slider from './Slider.vue'
@@ -22,34 +22,33 @@ const props = defineProps({
   updateEyes: { type: Function as PropType<IUpdateEyes>, required: true }
 })
 
-
 const code = computed(() => {
   const c = `{
     "color": {
-        "primaryColor": "${props.editingAvatar.color?.primaryColor}",
+        "primaryColor": "${props.editingAvatar.color.primaryColor}",
         "secondaryColor": {
             "auto": false,
-            "value": "${props.editingAvatar.color?.secondaryColor}"
+            "value": "${props.editingAvatar.color.secondaryColor}"
         },
-        "backgroundColor": "${props.editingAvatar.color?.backgroundColor}",
+        "backgroundColor": "${props.editingAvatar.color.backgroundColor}",
     },
     "eyes": {
         "left": {
-            "scale": ${props.editingAvatar.eyes?.leftEye.scale},
-            "x": ${props.editingAvatar.eyes?.leftEye.x},
-            "y": ${props.editingAvatar.eyes?.leftEye.y}
+            "scale": "${props.editingAvatar.eyes.leftEye.scale}",
+            "x": "${props.editingAvatar.eyes.leftEye.x}",
+            "y": "${props.editingAvatar.eyes.leftEye.y}"
         },
         "right": {
-            "scale": ${props.editingAvatar.eyes?.rightEye.scale},
-            "x": ${props.editingAvatar.eyes?.rightEye.x},
-            "y": ${props.editingAvatar.eyes?.rightEye.y}
+            "scale": "${props.editingAvatar.eyes.rightEye.scale}",
+            "x": "${props.editingAvatar.eyes.rightEye.x}",
+            "y": "${props.editingAvatar.eyes.rightEye.y}"
         }
     },
     "effect": {
-        "blur": ${props.editingAvatar.effect?.blur},
+        "blur": "${props.editingAvatar.effect.blur}",
     },
     "roundCorner": {
-        "borderRadius": ${props.editingAvatar.radius},
+        "borderRadius": "${props.editingAvatar.radius}",
     },
     "decoration": null
 }`
