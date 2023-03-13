@@ -217,26 +217,54 @@ onMounted(() => {
     theme.value = THEME.LIGHT
   }
 })
+
+const isEditorOpening = ref(true)
+const toggleEditor = () => {
+  isEditorOpening.value = !isEditorOpening.value
+}
+
+const isMobileDevice = ref(false)
+const mediaQuery = window.matchMedia('(min-width: 768px)')
+function onWindowResize(e: MediaQueryListEvent | MediaQueryList) {
+  if (e.matches) {
+    isMobileDevice.value = false
+    isEditorOpening.value = true
+  } else {
+    isMobileDevice.value = true
+  }
+}
+mediaQuery.addEventListener('change', (event) => {
+  onWindowResize(event)
+})
+onWindowResize(mediaQuery)
 </script>
 
 <template>
   <div
-    class="md:flex-row md:p-12 md:space-x-12 md:space-y-0 flex flex-col items-center justify-between w-screen h-screen p-0 space-y-4"
+    class="md:flex-row md:p-12 md:space-x-12 md:space-y-0 flex flex-col items-stretch justify-between w-screen h-screen p-0 space-y-4"
   >
     <div
-      class="basis-6/12 md:basis-7/12 md:p-0 flex flex-col items-center justify-between w-full h-full p-3 space-y-8 overflow-y-auto"
+      class="md:basis-7/12 md:p-0 md:space-y-8 duration-400 flex flex-col items-center justify-between w-full h-full p-3 overflow-y-auto transition-all ease-linear"
+      :class="isEditorOpening ? 'basis-6/12 overflow-hidden' : ' overflow-hidden'"
     >
       <Header :editingAvatar="editingAvatar" :saveAvatar="saveAvatar"></Header>
       <Preview :editingAvatar="editingAvatar" :updateId="updateId"></Preview>
       <Footer :avatar-list="avatarList"></Footer>
     </div>
-    <Editor
-      class="md:basis-5/12 2xl:basis-4/12 basis-6/12 w-full"
-      :editingAvatar="editingAvatar"
-      :updateColor="updateColor"
-      :updateRadius="updateRadius"
-      :updateEffect="updateEffect"
-      :updateEyes="updateEyes"
-    ></Editor>
+    <div
+      class="md:basis-5/12 2xl:basis-4/12 duration-400 w-full transition-all ease-linear"
+      :class="isEditorOpening ? 'basis-6/12 overflow-hidden' : 'basis-16 overflow-hidden'"
+    >
+      <Editor
+        :editingAvatar="editingAvatar"
+        :updateColor="updateColor"
+        :updateRadius="updateRadius"
+        :updateEffect="updateEffect"
+        :updateEyes="updateEyes"
+        :is-mobile-device="isMobileDevice"
+        :is-editor-opening="isEditorOpening"
+        :toggle-editor="toggleEditor"
+      ></Editor>
+    </div>
   </div>
 </template>

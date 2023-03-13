@@ -30,9 +30,9 @@ const toggleSectionContent = () => {
     <div
       name="section-content"
       class="pl-1 space-y-3 transition-all duration-300"
-      :class="isSectionContentCollapsed ? 'max-h-0 overflow-hidden' : 'max-h-screen '"
+      :class="isSectionContentCollapsed ? 'max-h-0 overflow-hidden' : 'max-h-screen'"
     >
-      <slot name="content" :isSectionContentCollapsed="isSectionContentCollapsed"> </slot>
+      <slot name="content"></slot>
     </div>
     <slot name="remark"></slot>
   </div>

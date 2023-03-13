@@ -19,7 +19,11 @@ const props = defineProps({
   updateColor: { type: Function as PropType<IUpdateColor>, required: true },
   updateRadius: { type: Function as PropType<IUpdateRadius>, required: true },
   updateEffect: { type: Function as PropType<IUpdateEffect>, required: true },
-  updateEyes: { type: Function as PropType<IUpdateEyes>, required: true }
+  updateEyes: { type: Function as PropType<IUpdateEyes>, required: true },
+
+  isMobileDevice: { type: Boolean, required: true },
+  isEditorOpening: { type: Boolean, required: true },
+  toggleEditor: { type: Function, required: true }
 })
 
 const code = computed(() => {
@@ -57,12 +61,23 @@ const code = computed(() => {
 </script>
 <template>
   <div
-    class="shadow-slate-900/5 dark:shadow-black/20 md:rounded-xl transition-colors dark:border-slate-700 dark:bg-slate-800 border-slate-100 rounded-t-xl md:border md:max-w-[400px] h-full p-4 space-y-4 overflow-y-auto bg-white border-t shadow-xl"
+    class="md:rounded-xl transition-colors dark:border-slate-700 dark:bg-slate-800 border-slate-100 rounded-t-xl md:border md:max-w-[400px] h-full p-4 overflow-y-auto bg-white border-t shadow-xl space-y-4 shadow-slate-900/5 dark:shadow-black/20"
   >
+    <button
+      v-if="isMobileDevice"
+      @click="() => toggleEditor()"
+      class="text-slate-700 hover:dark:bg-slate-50/10 hover:bg-slate-800/10 group dark:text-slate-100 flex items-center justify-center p-1 mx-auto transition-colors bg-transparent rounded-full"
+    >
+      <i
+        class="ph-caret-up group-hover:scale-x-75 group-hover:scale-y-125 transition-transform"
+        style="font-size: 20px"
+      ></i>
+    </button>
+
     <EditorSection title-icon="ph-palette" title-text="Color/颜色">
       <template #content>
         <div class="space-y-1.5">
-          <h3 class="cartograph-cf-regular text-slate-700 dark:text-slate-100 transition-colors">
+          <h3 class="text-slate-700  transition-colors cartograph-cf-regular dark:text-slate-100">
             primary color/首要颜色
           </h3>
           <ColorSelector
