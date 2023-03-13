@@ -10,6 +10,10 @@ import { useStorage } from './hooks/useStorage'
 import { THEME } from '@/types/theme'
 import { themeKey, toggleThemeKey } from './symbols/theme'
 import type { Ref } from 'vue'
+import type { IUpdateId } from './types/updateId'
+import type { IUpdateColor } from './types/updateColor'
+import type { IUpdateRadius } from './types/updateRadius'
+import type { IUpdateEffect } from './types/updateEffect'
 
 const editingAvatar = ref<IAvatar>({
   id: '佚名',
@@ -23,6 +27,7 @@ const editingAvatar = ref<IAvatar>({
 
 const avatarList = reactive<IAvatar[]>([])
 
+let oldId: null | string = null
 const getAvatar = () => {
   const res = localStorage.getItem('avatarIdList')
   if (res) {
@@ -120,15 +125,22 @@ onMounted(() => {
   getAvatar()
 })
 
-const updateColor = (key: keyof IColor, value: string) => {
+const updateId: IUpdateId = (value: IAvatar['id']) => {
+  //对于一个id对应的avatar，在一次编辑中，
+  //可能有多个输入值的变化，只记录最开始未更改的值作为oldId
+  if (oldId === null) oldId = editingAvatar.value.id
+  editingAvatar.value.id = value
+}
+
+const updateColor: IUpdateColor = (key: keyof IColor, value: string) => {
   editingAvatar.value.color[key] = value
 }
 
-const updateRadius = (value: number) => {
+const updateRadius: IUpdateRadius = (value: number) => {
   editingAvatar.value.radius = value
 }
 
-const updateEffect = (key: keyof IEffect, value: number) => {
+const updateEffect: IUpdateEffect = (key: keyof IEffect, value: number) => {
   // console.log(typeof value)
   editingAvatar.value.effect[key] = value
 }
@@ -141,6 +153,38 @@ const updateEyes: IUpdateEyes = (
   // console.log(whichOne, key, value)
   editingAvatar.value.eyes[whichOne][key] = value
   // console.log(editingAvatar.eyes[whichOne][key])
+}
+
+const saveAvatar = () => {
+  console.error('123')
+  //如果localStorage没有存入过
+  if (!('avatar-' + editingAvatar.value.id in localStorage)) {
+    const res = localStorage.getItem('avatarIdList')
+
+    if (res) {
+      let avatarIdList: IAvatar['id'][] = JSON.parse(res)
+
+      console.log({ avatarIdList })
+
+      //如果这个id是旧id修改过的，则删除旧id及相关数据
+      if (oldId !== null) {
+        console.log({ oldId })
+        avatarIdList = avatarIdList.filter((id) => {
+          return id !== oldId
+        })
+        console.log({ avatarIdList })
+        localStorage.removeItem('avatar-' + oldId)
+
+        //重置oldId
+        oldId = null
+      }
+
+      avatarIdList.unshift(editingAvatar.value.id)
+      console.log({ avatarIdList })
+      localStorage.setItem('avatarIdList', JSON.stringify(avatarIdList))
+    }
+  }
+  localStorage.setItem('avatar-' + editingAvatar.value.id, JSON.stringify(editingAvatar.value))
 }
 
 const theme = useStorage('theme', null) as Ref<THEME>
@@ -180,10 +224,10 @@ onMounted(() => {
     class="md:flex-row md:p-12 md:space-x-12 md:space-y-0 flex flex-col items-center justify-between w-screen h-screen p-0 space-y-4"
   >
     <div
-      class="basis-6/12 md:basis-7/12 md:p-0 flex flex-col items-center justify-between w-full h-full p-3 overflow-y-auto"
+      class="basis-6/12 md:basis-7/12 md:p-0 flex flex-col items-center justify-between w-full h-full p-3 space-y-8 overflow-y-auto"
     >
-      <Header :editingAvatar="editingAvatar"></Header>
-      <Preview :editingAvatar="editingAvatar"></Preview>
+      <Header :editingAvatar="editingAvatar" :saveAvatar="saveAvatar"></Header>
+      <Preview :editingAvatar="editingAvatar" :updateId="updateId"></Preview>
       <Footer :avatar-list="avatarList"></Footer>
     </div>
     <Editor
