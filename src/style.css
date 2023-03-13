@@ -4,7 +4,7 @@
 
 @layer base {
     body {
-        @apply bg-slate-50 transition-colors dark:bg-slate-900 w-screen h-screen;
+        @apply bg-slate-50  dark:bg-slate-900 w-screen h-screen;
     }
 }
 
