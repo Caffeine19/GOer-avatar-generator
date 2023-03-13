@@ -12,7 +12,7 @@ defineProps({
 })
 </script>
 <template>
-  <div class="shrink flex flex-col items-center justify-center w-4/5">
+  <div class="grow flex flex-col items-center justify-center w-4/5 space-y-2">
     <Avatar
       id="preview"
       class="lg:max-w-lg w-4/5 max-w-[200px]"
@@ -21,7 +21,7 @@ defineProps({
       :effect="editingAvatar.effect"
       :eyes="editingAvatar.eyes"
     ></Avatar>
-    <p class="dark:text-slate-50 text-slate-900 animate-bounce mt-6 text-3xl">
+    <p class="dark:text-slate-50 text-slate-900 animate-bounce lg:text-3xl text-xl">
       # {{ editingAvatar.id }}
     </p>
     <canvas id="canvas" class="hidden"></canvas>
