@@ -46,7 +46,7 @@ const getAvatar = () => {
   } else {
     //如果之前没有存入过avatar
     //则填充进预设的sample
-    const sampleIdList = ['原皮', '猛男粉', '🍌黄', '🐼熊猫', '小黑紫']
+    const sampleIdList = ['😅原皮', '💪猛男粉', '🍌黄', '🐼熊猫', '🏀小黑紫']
     const sampleAvatarList: IAvatar[] = [
       {
         id: sampleIdList[0],
@@ -210,6 +210,30 @@ const deleteAvatar: IDeleteAvatar = () => {
   editingAvatar.value = avatarList[0]
 }
 
+//创建头像
+const createAvatar = () => {
+  const sampleAvatar: IAvatar = {
+    id: 'New 原皮',
+    color: {},
+    eyes: {
+      rightEye: {},
+      leftEye: {}
+    },
+    effect: {}
+  }
+  avatarList.unshift(sampleAvatar)
+  editingAvatar.value = sampleAvatar
+
+  localStorage.setItem('avatar-' + sampleAvatar.id, JSON.stringify(sampleAvatar))
+
+  const res = localStorage.getItem('avatarIdList')
+  if (res) {
+    let avatarIdList: IAvatar['id'][] = JSON.parse(res)
+    avatarIdList.unshift(sampleAvatar.id)
+    localStorage.setItem('avatarIdList', JSON.stringify(avatarIdList))
+  }
+}
+
 //主題深色模式淺色模式切換
 const theme = useStorage('theme', null) as Ref<THEME>
 provide(themeKey, theme)
@@ -276,9 +300,10 @@ onWindowResize(mediaQuery)
         :editingAvatar="editingAvatar"
         :saveAvatar="saveAvatar"
         :deleteAvatar="deleteAvatar"
+        :createAvatar="createAvatar"
       ></Header>
       <Preview :editingAvatar="editingAvatar" :updateId="updateId"></Preview>
-      <Footer :avatar-list="avatarList"></Footer>
+      <Footer :avatarList="avatarList"></Footer>
     </div>
     <div
       class="md:basis-5/12 2xl:basis-4/12 duration-400 w-full transition-all ease-linear"
@@ -290,9 +315,9 @@ onWindowResize(mediaQuery)
         :updateRadius="updateRadius"
         :updateEffect="updateEffect"
         :updateEyes="updateEyes"
-        :is-mobile-device="isMobileDevice"
-        :is-editor-opening="isEditorOpening"
-        :toggle-editor="toggleEditor"
+        :isMobileDevice="isMobileDevice"
+        :isEditorOpening="isEditorOpening"
+        :toggleEditor="toggleEditor"
       ></Editor>
     </div>
   </div>

@@ -17,7 +17,8 @@ const props = defineProps({
     type: Function,
     required: true
   },
-  deleteAvatar: { type: Function, required: true }
+  deleteAvatar: { type: Function, required: true },
+  createAvatar: { type: Function, required: true }
 })
 
 const logoColor = computed(() => {
@@ -76,6 +77,7 @@ const toggleMenu = () => {
 const HeaderButtonOptions = reactive<HeaderButtonProps[]>([
   { title: '保存', action: props.saveAvatar, icon: 'ph-floppy-disk' },
   { title: '下载', action: downloadAvatar, icon: 'ph-download-simple' },
+  { title: '添个', action: props.createAvatar, icon: 'ph-plus' },
   { title: '扬喽', action: props.deleteAvatar, icon: 'ph-trash' }
 ])
 </script>
