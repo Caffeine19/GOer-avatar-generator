@@ -190,6 +190,8 @@ const saveAvatar = () => {
 
 //删除头像
 const deleteAvatar: IDeleteAvatar = () => {
+  // if(avatarList.length===1) return
+
   localStorage.removeItem('avatar-' + editingAvatar.value.id)
 
   avatarList.forEach((avatar, index) => {
@@ -207,7 +209,11 @@ const deleteAvatar: IDeleteAvatar = () => {
     localStorage.setItem('avatarIdList', JSON.stringify(avatarIdList))
   }
 
-  editingAvatar.value = avatarList[0]
+  if (avatarList.length > 0) {
+    editingAvatar.value = avatarList[0]
+  } else {
+    createAvatar()
+  }
 }
 
 //创建头像
