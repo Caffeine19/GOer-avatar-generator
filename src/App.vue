@@ -240,6 +240,11 @@ const createAvatar = () => {
   }
 }
 
+const pickAvatar = (id: IAvatar['id']) => {
+  const pickedAvatar = avatarList.find((avatar) => avatar.id == id)
+  if (pickedAvatar) editingAvatar.value = pickedAvatar
+}
+
 //主題深色模式淺色模式切換
 const theme = useStorage('theme', null) as Ref<THEME>
 provide(themeKey, theme)
@@ -309,7 +314,11 @@ onWindowResize(mediaQuery)
         :createAvatar="createAvatar"
       ></Header>
       <Preview :editingAvatar="editingAvatar" :updateId="updateId"></Preview>
-      <Footer :avatarList="avatarList"></Footer>
+      <Footer
+        :avatarList="avatarList"
+        :pickAvatar="pickAvatar"
+        :editingAvatarId="editingAvatar.id"
+      ></Footer>
     </div>
     <div
       class="md:basis-5/12 2xl:basis-4/12 duration-400 w-full transition-all ease-linear"

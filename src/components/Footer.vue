@@ -8,6 +8,14 @@ defineProps({
   avatarList: {
     type: Array as PropType<IAvatar[]>,
     required: true
+  },
+  pickAvatar: {
+    type: Function,
+    required: true
+  },
+  editingAvatarId: {
+    type: String,
+    required: true
   }
 })
 </script>
@@ -20,13 +28,22 @@ defineProps({
     </button>
     <div class="overflow-x-auto">
       <div class="w-fit flex items-center justify-center space-x-3">
-        <Avatar
+        <div
           v-for="avatar in avatarList"
           :key="avatar.id"
-          :color="avatar.color"
-          :radius="40"
-          class="border-slate-200 dark:border-slate-600 md:w-16 md:h-16 w-12 h-12 p-1 transition-colors border rounded-md"
-        ></Avatar>
+          :class="
+            avatar.id === editingAvatarId
+              ? ``
+              : 'cursor-pointer border-slate-200 dark:border-slate-600'
+          "
+          :style="{
+            borderColor:
+              avatar.id === editingAvatarId ? avatar.color.secondaryColor || '#61BCE2' : ''
+          }"
+          class="md:w-16 md:h-16 w-12 h-12 p-1 transition-colors border rounded-md"
+        >
+          <Avatar :color="avatar.color" :radius="40" @click="() => pickAvatar(avatar.id)"></Avatar>
+        </div>
       </div>
     </div>
 
