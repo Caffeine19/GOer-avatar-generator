@@ -1,11 +1,13 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed, inject, ref, type PropType } from 'vue'
+import { computed, inject, ref, type PropType, reactive } from 'vue'
 
 import Avatar from './Avatar.vue'
 import Divider from './Divider.vue'
+import HeaderButton from './HeaderButton.vue'
 
 import type { IAvatar } from '@/types/avatar'
+import type { HeaderButtonProps } from './HeaderButton.vue'
 
 import { themeKey, toggleThemeKey } from '@/symbols/theme'
 import { THEME } from '@/types/theme'
@@ -60,12 +62,22 @@ const downloadAvatar = () => {
 }
 
 const theme = inject(themeKey)
-const toggleTheme = inject(toggleThemeKey)
+const toggleTheme =
+  inject(toggleThemeKey) ||
+  (() => {
+    console.log('inject toggle theme failed')
+  })
 
 const isMenuOpening = ref(false)
 const toggleMenu = () => {
   isMenuOpening.value = !isMenuOpening.value
 }
+
+const HeaderButtonOptions = reactive<HeaderButtonProps[]>([
+  { title: '保存', action: props.saveAvatar, icon: 'ph-floppy-disk' },
+  { title: '下载', action: downloadAvatar, icon: 'ph-download-simple' },
+  { title: '扬喽', action: props.deleteAvatar, icon: 'ph-trash' }
+])
 </script>
 <template>
   <div
@@ -87,43 +99,27 @@ const toggleMenu = () => {
         GOer-avatar-generator
       </h1>
     </div>
-    <div class="xl:flex items-stretch hidden space-x-2">
-      <button
-        @click="() => saveAvatar()"
-        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
+    <div class="xl:flex items-stretch hidden space-x-1">
+      <div
+        v-for="(button, index) in HeaderButtonOptions"
+        :key="index"
+        class="flex items-stretch space-x-1"
       >
-        <i class="ph-floppy-disk" style="font-size: 28px"></i>
-      </button>
-      <Divider direction="vertical" percent="h-3/5" />
-      <button
-        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
-        @click="downloadAvatar"
-      >
-        <i class="ph-download-simple" style="font-size: 28px"></i>
-      </button>
-      <Divider direction="vertical" percent="h-3/5" />
-      <button
-        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
-        @click="() => deleteAvatar()"
-      >
-        <i class="ph-trash" style="font-size: 28px"></i>
-      </button>
-      <Divider direction="vertical" percent="h-3/5" />
+        <HeaderButton
+          :title="button.title"
+          :icon="button.icon"
+          :action="button.action"
+        ></HeaderButton>
+        <Divider direction="vertical" percent="h-3/5" />
+      </div>
       <div>
-        <button
-          class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
-          @click="toggleTheme"
+        <HeaderButton
+          icon="ph-moon-stars"
+          title="夜~"
+          :action="toggleTheme"
           v-if="theme == THEME.LIGHT"
-        >
-          <i class="ph-moon-stars" style="font-size: 28px"></i>
-        </button>
-        <button
-          class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
-          @click="toggleTheme"
-          v-else
-        >
-          <i class="ph-sun" style="font-size: 28px"></i>
-        </button>
+        ></HeaderButton>
+        <HeaderButton icon="ph-sun" title="夜~" :action="toggleTheme" v-else></HeaderButton>
       </div>
     </div>
     <button
