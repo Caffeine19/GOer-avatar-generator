@@ -14,7 +14,8 @@ const props = defineProps({
   saveAvatar: {
     type: Function,
     required: true
-  }
+  },
+  deleteAvatar: { type: Function, required: true }
 })
 
 const logoColor = computed(() => {
@@ -89,28 +90,35 @@ const toggleMenu = () => {
     <div class="xl:flex items-stretch hidden space-x-2">
       <button
         @click="() => saveAvatar()"
-        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
+        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
       >
         <i class="ph-floppy-disk" style="font-size: 28px"></i>
       </button>
       <Divider direction="vertical" percent="h-3/5" />
       <button
-        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
+        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
         @click="downloadAvatar"
       >
         <i class="ph-download-simple" style="font-size: 28px"></i>
       </button>
       <Divider direction="vertical" percent="h-3/5" />
+      <button
+        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
+        @click="() => deleteAvatar()"
+      >
+        <i class="ph-trash" style="font-size: 28px"></i>
+      </button>
+      <Divider direction="vertical" percent="h-3/5" />
       <div>
         <button
-          class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
+          class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
           @click="toggleTheme"
           v-if="theme == THEME.LIGHT"
         >
           <i class="ph-moon-stars" style="font-size: 28px"></i>
         </button>
         <button
-          class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
+          class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
           @click="toggleTheme"
           v-else
         >
@@ -119,7 +127,7 @@ const toggleMenu = () => {
       </div>
     </div>
     <button
-      class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 xl:hidden flex items-center p-1 space-x-3 transition-colors border border-transparent rounded-md"
+      class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 xl:hidden flex items-center p-1 space-x-3 transition-colors border border-transparent rounded-md"
       @click="toggleMenu"
     >
       <i class="ph-list-dashes" style="font-size: 28px"></i>
@@ -130,23 +138,31 @@ const toggleMenu = () => {
     >
       <button
         @click="() => saveAvatar()"
-        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
+        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
       >
         <i class="ph-floppy-disk" style="font-size: 28px"></i>
         <span class="text-lg">保存</span>
       </button>
       <Divider />
       <button
-        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
+        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
         @click="downloadAvatar"
       >
         <i class="ph-download-simple" style="font-size: 28px"></i>
         <span class="text-lg">下载</span>
       </button>
       <Divider />
+      <button
+        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
+        @click="() => deleteAvatar()"
+      >
+        <i class="ph-trash" style="font-size: 28px"></i>
+        <span class="text-lg">扬喽</span>
+      </button>
+      <Divider />
       <div>
         <button
-          class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
+          class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
           @click="toggleTheme"
           v-if="theme == THEME.LIGHT"
         >
@@ -154,7 +170,7 @@ const toggleMenu = () => {
           <span class="w-9 text-lg">夜~</span>
         </button>
         <button
-          class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-900 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
+          class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
           @click="toggleTheme"
           v-else
         >

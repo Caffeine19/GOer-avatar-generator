@@ -14,6 +14,7 @@ import type { IUpdateId } from './types/updateId'
 import type { IUpdateColor } from './types/updateColor'
 import type { IUpdateRadius } from './types/updateRadius'
 import type { IUpdateEffect } from './types/updateEffect'
+import type { IDeleteAvatar } from './types/deleteAvatar'
 
 const editingAvatar = ref<IAvatar>({
   id: '佚名',
@@ -28,6 +29,7 @@ const editingAvatar = ref<IAvatar>({
 const avatarList = reactive<IAvatar[]>([])
 
 let oldId: null | string = null
+//读取头像
 const getAvatar = () => {
   const res = localStorage.getItem('avatarIdList')
   if (res) {
@@ -120,7 +122,6 @@ const getAvatar = () => {
     editingAvatar.value = avatarList[0]
   }
 }
-
 onMounted(() => {
   getAvatar()
 })
@@ -155,8 +156,8 @@ const updateEyes: IUpdateEyes = (
   // console.log(editingAvatar.eyes[whichOne][key])
 }
 
+//保存头像
 const saveAvatar = () => {
-  console.error('123')
   //如果localStorage没有存入过
   if (!('avatar-' + editingAvatar.value.id in localStorage)) {
     const res = localStorage.getItem('avatarIdList')
@@ -187,6 +188,29 @@ const saveAvatar = () => {
   localStorage.setItem('avatar-' + editingAvatar.value.id, JSON.stringify(editingAvatar.value))
 }
 
+//删除头像
+const deleteAvatar: IDeleteAvatar = () => {
+  localStorage.removeItem('avatar-' + editingAvatar.value.id)
+
+  avatarList.forEach((avatar, index) => {
+    if (avatar.id === editingAvatar.value.id) {
+      avatarList.splice(index, 1)
+    }
+  })
+
+  const res = localStorage.getItem('avatarIdList')
+  if (res) {
+    let avatarIdList: IAvatar['id'][] = JSON.parse(res)
+    avatarIdList = avatarIdList.filter((id) => {
+      return id !== editingAvatar.value.id
+    })
+    localStorage.setItem('avatarIdList', JSON.stringify(avatarIdList))
+  }
+
+  editingAvatar.value = avatarList[0]
+}
+
+//主題深色模式淺色模式切換
 const theme = useStorage('theme', null) as Ref<THEME>
 provide(themeKey, theme)
 const toggleTheme = () => {
@@ -218,6 +242,7 @@ onMounted(() => {
   }
 })
 
+//移动设备切换editor
 const isEditorOpening = ref(true)
 const toggleEditor = () => {
   isEditorOpening.value = !isEditorOpening.value
@@ -247,7 +272,11 @@ onWindowResize(mediaQuery)
       class="md:basis-7/12 md:p-0 md:space-y-8 duration-400 flex flex-col items-center justify-between w-full h-full p-3 transition-all ease-linear"
       :class="isEditorOpening ? 'basis-6/12 overflow-hidden' : ' overflow-hidden'"
     >
-      <Header :editingAvatar="editingAvatar" :saveAvatar="saveAvatar"></Header>
+      <Header
+        :editingAvatar="editingAvatar"
+        :saveAvatar="saveAvatar"
+        :deleteAvatar="deleteAvatar"
+      ></Header>
       <Preview :editingAvatar="editingAvatar" :updateId="updateId"></Preview>
       <Footer :avatar-list="avatarList"></Footer>
     </div>
