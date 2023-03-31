@@ -26,7 +26,7 @@ watch(
 )
 </script>
 <template>
-  <div class="grow flex flex-col items-center justify-center w-4/5 space-y-3">
+  <div class="grow flex flex-col items-center justify-center w-4/5 space-y-3 overflow-hidden">
     <Avatar
       id="preview"
       class="lg:max-w-lg w-4/5 max-w-[200px]"
