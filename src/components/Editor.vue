@@ -61,23 +61,23 @@ const code = computed(() => {
 </script>
 <template>
   <div
-    class="md:rounded-xl transition-colors dark:border-slate-700 dark:bg-slate-800 border-slate-100 rounded-t-xl md:border md:max-w-[400px] h-full p-4 overflow-y-auto bg-white border-t shadow-xl space-y-4 shadow-slate-900/5 dark:shadow-black/20"
+    class="md:rounded-xl transition-colors dark:border-slate-700 dark:bg-slate-800 border-slate-100 rounded-t-xl md:border md:max-w-[400px] h-full p-4 bg-white border-t shadow-xl space-y-4 shadow-slate-900/5 dark:shadow-black/20"
   >
     <button
       v-if="isMobileDevice"
       @click="() => toggleEditor()"
-      class="text-slate-700 hover:dark:bg-slate-50/10 hover:bg-slate-800/10 group dark:text-slate-100 flex items-center justify-center p-1 mx-auto transition-colors bg-transparent rounded-full"
+      class="text-slate-700 hover:dark:bg-slate-50/10 hover:bg-slate-800/10 group dark:text-slate-100 flex items-center justify-center px-1 mx-auto transition-colors bg-transparent rounded"
     >
       <i
-        class="ph-caret-up group-hover:scale-x-75 group-hover:scale-y-125 transition-transform"
-        style="font-size: 20px"
+        class="ph-minus group-hover:scale-x-75 transition-transform scale-x-150 scale-y-75"
+        style="font-size: 28px"
       ></i>
     </button>
 
     <EditorSection title-icon="ph-palette" title-text="Color/颜色">
       <template #content>
         <div class="space-y-1.5">
-          <h3 class="text-slate-700  transition-colors cartograph-cf-regular dark:text-slate-100">
+          <h3 class="text-slate-700 cartograph-cf-regular dark:text-slate-100 transition-colors">
             primary color/首要颜色
           </h3>
           <ColorSelector
