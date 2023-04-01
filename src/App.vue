@@ -305,7 +305,7 @@ onWindowResize(mediaQuery)
   >
     <div
       class="md:basis-7/12 md:p-0 md:space-y-8 duration-400 flex flex-col items-center justify-between w-full h-full p-3 transition-all ease-linear"
-      :class="isEditorOpening ? 'basis-6/12 overflow-hidden' : ' overflow-hidden'"
+      :class="isEditorOpening ? 'basis-6/12' : ''"
     >
       <Header
         :editingAvatar="editingAvatar"
@@ -322,7 +322,7 @@ onWindowResize(mediaQuery)
     </div>
     <div
       class="md:basis-5/12 2xl:basis-4/12 duration-400 w-full transition-all ease-linear"
-      :class="isEditorOpening ? 'basis-6/12 overflow-hidden' : 'basis-16 overflow-hidden'"
+      :class="isEditorOpening ? 'basis-6/12' : 'basis-16 overflow-hidden'"
     >
       <Editor
         :editingAvatar="editingAvatar"
