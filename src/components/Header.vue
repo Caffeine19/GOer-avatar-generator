@@ -111,71 +111,41 @@ const HeaderButtonOptions = reactive<HeaderButtonProps[]>([
           :title="button.title"
           :icon="button.icon"
           :action="button.action"
+          :showTitle="false"
         ></HeaderButton>
         <Divider direction="vertical" percent="h-3/5" />
       </div>
-      <div>
-        <HeaderButton
-          icon="ph-moon-stars"
-          title="夜~"
-          :action="toggleTheme"
-          v-if="theme == THEME.LIGHT"
-        ></HeaderButton>
-        <HeaderButton icon="ph-sun" title="夜~" :action="toggleTheme" v-else></HeaderButton>
-      </div>
+      <HeaderButton
+        :icon="theme == THEME.LIGHT ? 'ph-moon-stars' : 'ph-sun'"
+        :title="theme == THEME.LIGHT ? '夜~' : '日！'"
+        :action="toggleTheme"
+        :showTitle="false"
+      ></HeaderButton>
     </div>
-    <button
-      class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 xl:hidden flex items-center p-1 space-x-3 transition-colors border border-transparent rounded-md"
-      @click="toggleMenu"
-    >
-      <i class="ph-list-dashes" style="font-size: 28px"></i>
-    </button>
+    <HeaderButton
+      icon="ph-list-dashes"
+      title="菜单"
+      :action="toggleMenu"
+      :showTitle="false"
+      class="xl:hidden"
+    ></HeaderButton>
     <div
-      class="top-20 dark:border-slate-700 dark:bg-slate-800 rounded-xl shadow-slate-900/5 dark:shadow-black/20 border-slate-100 xl:hidden absolute right-0 z-10 flex flex-col items-center px-4 py-2 space-y-2 transition-colors bg-white border"
+      class="top-20 dark:border-slate-700 dark:bg-slate-800 rounded-xl shadow-slate-900/5 dark:shadow-black/20 border-slate-100 xl:hidden absolute right-0 z-10 flex flex-col items-center px-4 py-2 space-y-1 transition-colors bg-white border"
       :class="isMenuOpening ? 'flex' : 'hidden'"
     >
-      <button
-        @click="() => saveAvatar()"
-        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
-      >
-        <i class="ph-floppy-disk" style="font-size: 28px"></i>
-        <span class="text-lg">保存</span>
-      </button>
-      <Divider />
-      <button
-        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
-        @click="downloadAvatar"
-      >
-        <i class="ph-download-simple" style="font-size: 28px"></i>
-        <span class="text-lg">下载</span>
-      </button>
-      <Divider />
-      <button
-        class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
-        @click="() => deleteAvatar()"
-      >
-        <i class="ph-trash" style="font-size: 28px"></i>
-        <span class="text-lg">扬喽</span>
-      </button>
-      <Divider />
-      <div>
-        <button
-          class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
-          @click="toggleTheme"
-          v-if="theme == THEME.LIGHT"
-        >
-          <i class="ph-moon-stars" style="font-size: 28px"></i>
-          <span class="w-9 text-lg">夜~</span>
-        </button>
-        <button
-          class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
-          @click="toggleTheme"
-          v-else
-        >
-          <i class="ph-sun" style="font-size: 28px"></i>
-          <span class="w-9 text-lg">日！</span>
-        </button>
+      <div v-for="(button, index) in HeaderButtonOptions" :key="index" class="space-y-1">
+        <HeaderButton
+          :title="button.title"
+          :icon="button.icon"
+          :action="button.action"
+        ></HeaderButton>
+        <Divider />
       </div>
+      <HeaderButton
+        :icon="theme == THEME.LIGHT ? 'ph-moon-stars' : 'ph-sun'"
+        :title="theme == THEME.LIGHT ? '夜~' : '日！'"
+        :action="toggleTheme"
+      ></HeaderButton>
     </div>
   </div>
 </template>

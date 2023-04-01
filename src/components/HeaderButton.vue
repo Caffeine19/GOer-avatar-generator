@@ -1,13 +1,14 @@
 <script lang="ts">
 export type HeaderButtonProps = {
   title: string
+  showTitle?: boolean
   action: Function
   icon: string
 }
 </script>
 
 <script setup lang="ts">
-defineProps<HeaderButtonProps>()
+withDefaults(defineProps<HeaderButtonProps>(), { showTitle: true })
 </script>
 <template>
   <button
@@ -15,5 +16,6 @@ defineProps<HeaderButtonProps>()
     class="text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:bg-slate-50 hover:border-slate-100 flex items-center p-2 space-x-3 transition-colors border border-transparent rounded-md"
   >
     <i :class="icon" style="font-size: 28px"></i>
+    <span class="text-lg" v-if="showTitle">{{ title }}</span>
   </button>
 </template>
