@@ -21,7 +21,7 @@ defineProps({
 </script>
 <template>
   <div
-    class="border-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:shadow-black/20 shadow-slate-900/5 rounded-xl md:px-4 md:py-3 md:space-x-5 flex items-center max-w-full px-2 py-2 space-x-3 transition-colors bg-white border shadow-xl"
+    class="border-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:shadow-black/20 shadow-slate-900/5 rounded-xl md:px-4 md:py-3 md:space-x-5 flex items-center max-w-full px-2 py-2 space-x-3 overflow-hidden transition-colors bg-white border shadow-xl"
   >
     <button class="text-slate-400 flex items-center justify-center">
       <i class="ph-caret-left" style="font-size: 28px"></i>

@@ -304,7 +304,7 @@ onWindowResize(mediaQuery)
     class="md:flex-row md:p-12 md:space-x-12 md:space-y-0 flex flex-col items-stretch justify-between w-screen h-screen p-0 space-y-4"
   >
     <div
-      class="md:basis-7/12 md:p-0 md:space-y-8 duration-400 flex flex-col items-center justify-between w-full h-full p-3"
+      class="md:basis-7/12 md:p-0 md:space-y-8 duration-400 md:max-w-7/12 flex flex-col items-center justify-between p-3"
       :class="isEditorOpening ? 'basis-6/12' : ''"
     >
       <Header
@@ -333,6 +333,6 @@ onWindowResize(mediaQuery)
       :isMobileDevice="isMobileDevice"
       :isEditorOpening="isEditorOpening"
       :toggleEditor="toggleEditor"
-    ></Editor>
+    />
   </div>
 </template>
