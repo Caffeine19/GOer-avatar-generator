@@ -321,10 +321,8 @@ onWindowResize(mediaQuery)
       ></Footer>
     </div>
     <Editor
-      class="md:basis-5/12 2xl:basis-4/12 duration-400 w-full"
-      :class="
-        isEditorOpening ? 'basis-6/12 overflow-hidden overflow-y-auto' : 'basis-16 overflow-hidden'
-      "
+      class="md:basis-5/12 2xl:basis-4/12 duration-400 w-full overflow-hidden"
+      :class="isEditorOpening ? 'basis-6/12' : 'basis-16'"
       :editingAvatar="editingAvatar"
       :updateColor="updateColor"
       :updateRadius="updateRadius"

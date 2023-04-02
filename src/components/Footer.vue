@@ -26,7 +26,7 @@ defineProps({
     <button class="text-slate-400 flex items-center justify-center">
       <i class="ph-caret-left" style="font-size: 28px"></i>
     </button>
-    <div class="overflow-x-auto">
+    <div class="custom-scrollbar overflow-x-auto">
       <div class="w-fit flex items-center justify-center space-x-3">
         <div
           v-for="avatar in avatarList"

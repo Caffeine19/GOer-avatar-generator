@@ -37,7 +37,7 @@
         height: 10px;
     }
 
-    .custom-scrollbar::-webkit-scrollbar-thumb {
+    .custom-scrollbar::-webkit-scrollbar-thumb { 
         @apply bg-slate-300 dark:bg-slate-600 rounded-full;
     }
 

@@ -34,7 +34,7 @@ export default defineComponent({
     }
     return () =>
       h('div', { className: 'relative m-4 p-4 bg-[#1a1b26] rounded-lg' }, [
-        h('pre', { className: 'overflow-auto' }, [
+        h('pre', { className: 'overflow-auto custom-scrollbar' }, [
           h('code', { innerHTML: highlightedCode.value.value }),
           h(
             'button',
