@@ -4,7 +4,7 @@
 
 @layer base {
     body {
-        @apply bg-slate-50  dark:bg-slate-900 w-screen h-screen;
+        @apply bg-slate-50 dark:bg-slate-900 w-screen h-screen;
     }
 }
 
@@ -30,5 +30,22 @@
     .text-gradient {
         background-clip: text;
         -webkit-text-fill-color: transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        @apply bg-slate-300 dark:bg-slate-600 rounded-full;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        @apply bg-slate-400 dark:bg-slate-500;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        @apply bg-slate-200 dark:bg-slate-700 rounded-full;
     }
 }
