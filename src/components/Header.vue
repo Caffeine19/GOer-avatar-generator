@@ -2,15 +2,19 @@
 <script setup lang="ts">
 import { computed, inject, ref, type PropType, reactive } from 'vue'
 
-import Avatar from './Avatar.vue'
-import Divider from './Divider.vue'
-import HeaderButton from './HeaderButton.vue'
-
 import type { IAvatar } from '@/types/avatar'
+import Avatar from './Avatar.vue'
+
+import Divider from './Divider.vue'
+
+import HeaderButton from './HeaderButton.vue'
 import type { HeaderButtonProps } from './HeaderButton.vue'
 
 import { themeKey, toggleThemeKey } from '@/symbols/theme'
+
 import { THEME } from '@/types/theme'
+
+import ButtonPopover from './ButtonPopover.vue'
 const props = defineProps({
   editingAvatar: { type: Object as PropType<IAvatar>, required: true },
   saveAvatar: {
@@ -83,7 +87,7 @@ const HeaderButtonOptions = reactive<HeaderButtonProps[]>([
 </script>
 <template>
   <div
-    class="rounded-xl shadow-slate-900/5 dark:shadow-black/20 border-slate-100 2xl:w-4/5 dark:border-slate-700 dark:bg-slate-800 relative flex items-center justify-between w-full px-4 py-3 transition-colors bg-white border shadow-xl"
+    class="rounded-xl shadow-slate-900/5 dark:shadow-black/20 border-slate-100 3xl:w-4/5 dark:border-slate-700 dark:bg-slate-800 relative flex items-center justify-between w-full px-4 py-3 transition-colors bg-white border shadow-xl"
   >
     <div class="flex items-center space-x-3">
       <Avatar
@@ -107,20 +111,24 @@ const HeaderButtonOptions = reactive<HeaderButtonProps[]>([
         :key="index"
         class="flex items-stretch space-x-1"
       >
-        <HeaderButton
-          :title="button.title"
-          :icon="button.icon"
-          :action="button.action"
-          :showTitle="false"
-        ></HeaderButton>
+        <ButtonPopover :content="button.title">
+          <HeaderButton
+            :title="button.title"
+            :icon="button.icon"
+            :action="button.action"
+            :showTitle="false"
+          ></HeaderButton
+        ></ButtonPopover>
         <Divider direction="vertical" percent="h-3/5" />
       </div>
-      <HeaderButton
-        :icon="theme == THEME.LIGHT ? 'ph-moon-stars' : 'ph-sun'"
-        :title="theme == THEME.LIGHT ? '夜~' : '日！'"
-        :action="toggleTheme"
-        :showTitle="false"
-      ></HeaderButton>
+      <ButtonPopover :content="theme == THEME.LIGHT ? '夜~' : '日！'">
+        <HeaderButton
+          :icon="theme == THEME.LIGHT ? 'ph-moon-stars' : 'ph-sun'"
+          :title="theme == THEME.LIGHT ? '夜~' : '日！'"
+          :action="toggleTheme"
+          :showTitle="false"
+        ></HeaderButton
+      ></ButtonPopover>
     </div>
     <HeaderButton
       icon="ph-list-dashes"
