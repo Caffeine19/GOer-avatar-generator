@@ -63,7 +63,7 @@ const code = computed(() => {
   <div
     class="md:rounded-xl transition-colors dark:border-slate-700 dark:bg-slate-800 border-slate-100 rounded-t-xl md:border md:max-w-[400px] h-full p-4 bg-white border-t shadow-xl shadow-slate-900/5 dark:shadow-black/20"
   >
-    <div class="custom-scrollbar h-full space-y-4 overflow-auto">
+    <div class="custom-scrollbar h-full pr-4 space-y-4 overflow-auto">
       <button
         v-if="isMobileDevice"
         @click="() => toggleEditor()"

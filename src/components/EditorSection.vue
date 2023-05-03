@@ -13,7 +13,7 @@ const toggleSectionContent = () => {
 }
 </script>
 <template>
-  <div name="section" class="space-y-3">
+  <div name="section" class="space-y-3" v-auto-animate>
     <div name="section-title" class="flex items-center justify-between">
       <div class="text-slate-900 dark:text-white flex items-center space-x-3 transition-colors">
         <i :class="titleIcon" style="font-size: 28px"></i>
@@ -30,7 +30,7 @@ const toggleSectionContent = () => {
     <div
       name="section-content"
       class="pl-1 space-y-3 transition-all duration-300"
-      :class="isSectionContentCollapsed ? 'max-h-0 overflow-hidden' : 'max-h-screen'"
+      v-if="isSectionContentCollapsed"
     >
       <slot name="content"></slot>
     </div>
