@@ -8,7 +8,7 @@ dependencies:
     specifier: ^11.7.0
     version: 11.7.0
   vue:
-    specifier: ^3.2.47
+    specifier: link:@formkit/auto-animate/vue
     version: 3.2.47
 
 devDependencies:
