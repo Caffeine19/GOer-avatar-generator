@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "highlight.js": "^11.7.0",
-    "vue": "^3.2.47"
+    "vue": "link:@formkit/auto-animate/vue"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",
