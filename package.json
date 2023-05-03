@@ -12,6 +12,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@formkit/auto-animate": "1.0.0-beta.6",
     "highlight.js": "^11.7.0",
     "vue": "^3.2.47"
   },
