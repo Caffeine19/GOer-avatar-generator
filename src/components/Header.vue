@@ -87,7 +87,7 @@ const HeaderButtonOptions = reactive<HeaderButtonProps[]>([
 </script>
 <template>
   <div
-    class="rounded-xl shadow-slate-900/5 dark:shadow-black/20 border-slate-100 3xl:w-4/5 dark:border-slate-700 dark:bg-slate-800 relative flex items-center justify-between w-full px-4 py-3 transition-colors bg-white border shadow-xl"
+    class="rounded-lg md:rounded-xl shadow-slate-900/5 dark:shadow-black/20 border-slate-100 3xl:w-4/5 dark:border-slate-700 dark:bg-slate-800 md:px-4 md:py-3 relative flex items-center justify-between w-full px-1.5 py-1.5 transition-colors bg-white border shadow-xl"
   >
     <div class="flex items-center space-x-3">
       <Avatar
