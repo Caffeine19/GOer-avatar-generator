@@ -1,20 +1,26 @@
 <script setup lang="ts">
+import { onMounted, provide, reactive, ref, watch } from 'vue'
+import type { Ref } from 'vue'
+
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import Preview from './components/Preview.vue'
 import Editor from './components/Editor.vue'
-import { onMounted, provide, reactive, ref, watch } from 'vue'
+import Messenger from './components/Messenger.vue'
+
 import type { IAvatar, IColor, IEffect, IEyes } from './types/avatar'
-import type { IUpdateEyes } from './types/updateEyes'
-import { useStorage } from './hooks/useStorage'
-import { THEME } from '@/types/theme'
-import { themeKey, toggleThemeKey } from './symbols/theme'
-import type { Ref } from 'vue'
 import type { IUpdateId } from './types/updateId'
 import type { IUpdateColor } from './types/updateColor'
 import type { IUpdateRadius } from './types/updateRadius'
 import type { IUpdateEffect } from './types/updateEffect'
 import type { IDeleteAvatar } from './types/deleteAvatar'
+import type { IUpdateEyes } from './types/updateEyes'
+import type { MessengerOption, IOpenMessenger } from './types/messenger'
+
+import { useStorage } from './hooks/useStorage'
+
+import { THEME } from '@/types/theme'
+import { themeKey, toggleThemeKey } from './symbols/theme'
 
 const editingAvatar = ref<IAvatar>({
   id: '佚名',
@@ -186,6 +192,7 @@ const saveAvatar = () => {
     }
   }
   localStorage.setItem('avatar-' + editingAvatar.value.id, JSON.stringify(editingAvatar.value))
+  openMessenger({ status: true, info: '保存成功' })
 }
 
 //删除头像
@@ -214,6 +221,7 @@ const deleteAvatar: IDeleteAvatar = () => {
   } else {
     createAvatar()
   }
+  openMessenger({ status: true, info: '删除成功' })
 }
 
 //创建头像
@@ -250,6 +258,11 @@ const theme = useStorage('theme', null) as Ref<THEME>
 provide(themeKey, theme)
 const toggleTheme = () => {
   theme.value = theme.value == THEME.LIGHT ? THEME.DARK : THEME.LIGHT
+
+  openMessenger({
+    status: true,
+    info: `切换至${theme.value == THEME.LIGHT ? '浅色模式' : '深色模式'}`
+  })
 }
 provide(toggleThemeKey, toggleTheme)
 
@@ -297,6 +310,20 @@ mediaQuery.addEventListener('change', (event) => {
   onWindowResize(event)
 })
 onWindowResize(mediaQuery)
+
+const messengerOption = reactive<MessengerOption>({ opening: false, info: '', status: false })
+provide('messengerOption', messengerOption)
+const openMessenger: IOpenMessenger = (data) => {
+  messengerOption.opening = true
+  messengerOption.info = data.info
+  messengerOption.status = data.status
+  setTimeout(() => {
+    messengerOption.opening = false
+  }, 1000)
+}
+provide('openMessenger', openMessenger)
+
+onMounted(() => openMessenger({ status: true, info: '妙！' }))
 </script>
 
 <template>
@@ -333,4 +360,5 @@ onWindowResize(mediaQuery)
       :toggleEditor="toggleEditor"
     />
   </div>
+  <Messenger :color="editingAvatar.color"></Messenger>
 </template>

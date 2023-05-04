@@ -15,6 +15,7 @@ import { themeKey, toggleThemeKey } from '@/symbols/theme'
 import { THEME } from '@/types/theme'
 
 import ButtonPopover from './ButtonPopover.vue'
+import type { IOpenMessenger } from '@/types/messenger'
 const props = defineProps({
   editingAvatar: { type: Object as PropType<IAvatar>, required: true },
   saveAvatar: {
@@ -32,6 +33,8 @@ const logoColor = computed(() => {
     backgroundColor: 'none'
   }
 })
+
+const openMessenger = inject('openMessenger') as IOpenMessenger
 
 const downloadAvatar = () => {
   let svg = document.getElementById('preview')
@@ -63,6 +66,7 @@ const downloadAvatar = () => {
       }
     })
     img.src = url
+    openMessenger({ status: true, info: '开始下载' })
   }
 }
 
