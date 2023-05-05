@@ -10,28 +10,17 @@ const props = withDefaults(defineProps<{ min?: number; max?: number; range?: num
   range: 50
 })
 
-const localRange = ref<string>(props.range.toString())
 watch(
   () => props.range,
-  () => {
-    localRange.value = props.range.toString()
-  }
-)
-
-const emits = defineEmits<{
-  (e: 'updateRange', value: number): void
-}>()
-watch(
-  localRange,
-  () => {
-    // console.log(typeof localRange.value)
-    percent.value = Math.floor(
-      ((parseInt(localRange.value) - props.min) / (props.max - props.min)) * 100
-    )
-    emits('updateRange', parseInt(localRange.value))
+  (newVal) => {
+    percent.value = Math.floor(((newVal - props.min) / (props.max - props.min)) * 100)
   },
   { immediate: true }
 )
+
+defineEmits<{
+  (e: 'updateRange', value: number): void
+}>()
 
 const theme = inject(themeKey)
 
@@ -47,8 +36,9 @@ const sliderActiveColor = computed(() => (theme?.value === THEME.LIGHT ? '#f1f5f
         name="volume"
         :min="min"
         :max="max"
+        :value="range"
         class="border-slate-200 opacity-60 dark:border-slate-600 w-full h-5 transition-colors border rounded"
-        v-model="localRange"
+        @input="$emit('updateRange', parseInt(($event.target as HTMLInputElement).value))"
       />
     </div>
     <div
@@ -57,7 +47,7 @@ const sliderActiveColor = computed(() => (theme?.value === THEME.LIGHT ? '#f1f5f
       <p
         class="text-slate-700 cartograph-cf-regular dark:text-slate-100 text-base transition-colors"
       >
-        {{ localRange }}
+        {{ range }}
       </p>
     </div>
   </div>

@@ -22,6 +22,8 @@ import { useStorage } from './hooks/useStorage'
 import { THEME } from '@/types/theme'
 import { themeKey, toggleThemeKey } from './symbols/theme'
 
+const modified = ref(false)
+
 const editingAvatar = ref<IAvatar>({
   id: '佚名',
   color: {},
@@ -31,7 +33,6 @@ const editingAvatar = ref<IAvatar>({
   },
   effect: {}
 })
-
 const avatarList = reactive<IAvatar[]>([])
 
 let oldId: null | string = null
@@ -137,19 +138,27 @@ const updateId: IUpdateId = (value: IAvatar['id']) => {
   //可能有多个输入值的变化，只记录最开始未更改的值作为oldId
   if (oldId === null) oldId = editingAvatar.value.id
   editingAvatar.value.id = value
+
+  modified.value = true
 }
 
 const updateColor: IUpdateColor = (key: keyof IColor, value: string) => {
   editingAvatar.value.color[key] = value
+
+  modified.value = true
 }
 
 const updateRadius: IUpdateRadius = (value: number) => {
   editingAvatar.value.radius = value
+
+  modified.value = true
 }
 
 const updateEffect: IUpdateEffect = (key: keyof IEffect, value: number) => {
   // console.log(typeof value)
   editingAvatar.value.effect[key] = value
+
+  modified.value = true
 }
 
 const updateEyes: IUpdateEyes = (
@@ -159,7 +168,7 @@ const updateEyes: IUpdateEyes = (
 ) => {
   // console.log(whichOne, key, value)
   editingAvatar.value.eyes[whichOne][key] = value
-  // console.log(editingAvatar.eyes[whichOne][key])
+  modified.value = true
 }
 
 //保存头像
@@ -193,6 +202,8 @@ const saveAvatar = () => {
   }
   localStorage.setItem('avatar-' + editingAvatar.value.id, JSON.stringify(editingAvatar.value))
   openMessenger({ status: true, info: '保存成功' })
+
+  modified.value = false
 }
 
 //删除头像
@@ -222,6 +233,7 @@ const deleteAvatar: IDeleteAvatar = () => {
     createAvatar()
   }
   openMessenger({ status: true, info: '删除成功' })
+  modified.value = false
 }
 
 //创建头像
@@ -246,6 +258,7 @@ const createAvatar = () => {
     avatarIdList.unshift(sampleAvatar.id)
     localStorage.setItem('avatarIdList', JSON.stringify(avatarIdList))
   }
+  modified.value = false
 }
 
 const pickAvatar = (id: IAvatar['id']) => {
@@ -339,6 +352,7 @@ onMounted(() => openMessenger({ status: true, info: '妙！' }))
         :saveAvatar="saveAvatar"
         :deleteAvatar="deleteAvatar"
         :createAvatar="createAvatar"
+        :modified="modified"
       ></Header>
       <Preview :editingAvatar="editingAvatar" :updateId="updateId"></Preview>
       <Footer

@@ -23,7 +23,8 @@ const props = defineProps({
     required: true
   },
   deleteAvatar: { type: Function, required: true },
-  createAvatar: { type: Function, required: true }
+  createAvatar: { type: Function, required: true },
+  modified: { type: Boolean, required: true }
 })
 
 const logoColor = computed(() => {
@@ -113,8 +114,12 @@ const HeaderButtonOptions = reactive<HeaderButtonProps[]>([
       <div
         v-for="(button, index) in HeaderButtonOptions"
         :key="index"
-        class="flex items-stretch space-x-1"
+        class="relative flex items-stretch space-x-1"
       >
+        <div
+          v-if="button.title == '保存' && modified"
+          class="animate-pulse top-2 left-2 border-amber-400 bg-amber-400/60 absolute z-20 w-4 h-4 border rounded-full"
+        ></div>
         <ButtonPopover :content="button.title">
           <HeaderButton
             :title="button.title"
