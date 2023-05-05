@@ -324,6 +324,7 @@ mediaQuery.addEventListener('change', (event) => {
 })
 onWindowResize(mediaQuery)
 
+//操作提示组件messenger
 const messengerOption = reactive<MessengerOption>({ opening: false, info: '', status: false })
 provide('messengerOption', messengerOption)
 const openMessenger: IOpenMessenger = (data) => {
@@ -334,7 +335,6 @@ const openMessenger: IOpenMessenger = (data) => {
     messengerOption.opening = false
   }, 1000)
 }
-provide('openMessenger', openMessenger)
 
 onMounted(() => openMessenger({ status: true, info: '妙！' }))
 </script>
@@ -353,6 +353,7 @@ onMounted(() => openMessenger({ status: true, info: '妙！' }))
         :deleteAvatar="deleteAvatar"
         :createAvatar="createAvatar"
         :modified="modified"
+        :openMessenger="openMessenger"
       ></Header>
       <Preview :editingAvatar="editingAvatar" :updateId="updateId"></Preview>
       <Footer

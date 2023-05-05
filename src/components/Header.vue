@@ -15,7 +15,7 @@ import { themeKey, toggleThemeKey } from '@/symbols/theme'
 import { THEME } from '@/types/theme'
 
 import ButtonPopover from './ButtonPopover.vue'
-import type { IOpenMessenger } from '@/types/messenger'
+
 const props = defineProps({
   editingAvatar: { type: Object as PropType<IAvatar>, required: true },
   saveAvatar: {
@@ -24,7 +24,8 @@ const props = defineProps({
   },
   deleteAvatar: { type: Function, required: true },
   createAvatar: { type: Function, required: true },
-  modified: { type: Boolean, required: true }
+  modified: { type: Boolean, required: true },
+  openMessenger: { type: Function, required: true }
 })
 
 const logoColor = computed(() => {
@@ -34,8 +35,6 @@ const logoColor = computed(() => {
     backgroundColor: 'none'
   }
 })
-
-const openMessenger = inject('openMessenger') as IOpenMessenger
 
 const downloadAvatar = () => {
   let svg = document.getElementById('preview')
@@ -67,7 +66,7 @@ const downloadAvatar = () => {
       }
     })
     img.src = url
-    openMessenger({ status: true, info: '开始下载' })
+    props.openMessenger({ status: true, info: '开始下载' })
   }
 }
 
@@ -139,18 +138,28 @@ const HeaderButtonOptions = reactive<HeaderButtonProps[]>([
         ></HeaderButton
       ></ButtonPopover>
     </div>
-    <HeaderButton
-      icon="ph-list-dashes"
-      title="菜单"
-      :action="toggleMenu"
-      :showTitle="false"
-      class="xl:hidden"
-    ></HeaderButton>
+    <div class="relative">
+      <HeaderButton
+        icon="ph-list-dashes"
+        title="菜单"
+        :action="toggleMenu"
+        :showTitle="false"
+        class="xl:hidden"
+      ></HeaderButton>
+      <div
+        v-if="modified && !isMenuOpening"
+        class="animate-pulse top-2 left-2 border-amber-400 bg-amber-400/60 absolute z-20 w-4 h-4 border rounded-full"
+      ></div>
+    </div>
     <div
       class="top-20 dark:border-slate-700 dark:bg-slate-800 rounded-xl shadow-slate-900/5 dark:shadow-black/20 border-slate-100 xl:hidden absolute right-0 z-10 flex flex-col items-center px-4 py-2 space-y-1 transition-colors bg-white border"
       :class="isMenuOpening ? 'flex' : 'hidden'"
     >
       <div v-for="(button, index) in HeaderButtonOptions" :key="index" class="space-y-1">
+        <div
+          v-if="button.title == '保存' && modified"
+          class="animate-pulse top-4 left-5 border-amber-400 bg-amber-400/60 absolute z-20 w-4 h-4 border rounded-full"
+        ></div>
         <HeaderButton
           :title="button.title"
           :icon="button.icon"
