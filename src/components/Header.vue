@@ -3,19 +3,16 @@
 import { computed, inject, ref, type PropType, reactive } from 'vue'
 
 import type { IAvatar } from '@/types/avatar'
-import Avatar from './Avatar.vue'
-
-import Divider from './Divider.vue'
-
-import HeaderButton from './HeaderButton.vue'
-import type { HeaderButtonProps } from './HeaderButton.vue'
+import { THEME } from '@/types/theme'
 
 import { themeKey, toggleThemeKey } from '@/symbols/theme'
 
-import { THEME } from '@/types/theme'
-
+import type { HeaderButtonProps } from './HeaderButton.vue'
 import ButtonPopover from './ButtonPopover.vue'
-
+import Modified from '@/components/Modified.vue'
+import HeaderButton from './HeaderButton.vue'
+import Divider from './Divider.vue'
+import Avatar from './Avatar.vue'
 const props = defineProps({
   editingAvatar: { type: Object as PropType<IAvatar>, required: true },
   saveAvatar: {
@@ -115,10 +112,7 @@ const HeaderButtonOptions = reactive<HeaderButtonProps[]>([
         :key="index"
         class="relative flex items-stretch space-x-1"
       >
-        <div
-          v-if="button.title == '保存' && modified"
-          class="animate-pulse top-2 left-2 border-amber-400 bg-amber-400/60 absolute z-20 w-4 h-4 border rounded-full"
-        ></div>
+        <Modified v-if="button.title == '保存' && modified"></Modified>
         <ButtonPopover :content="button.title">
           <HeaderButton
             :title="button.title"
@@ -146,20 +140,14 @@ const HeaderButtonOptions = reactive<HeaderButtonProps[]>([
         :showTitle="false"
         class="xl:hidden"
       ></HeaderButton>
-      <div
-        v-if="modified && !isMenuOpening"
-        class="animate-pulse top-2 left-2 border-amber-400 bg-amber-400/60 absolute z-20 w-4 h-4 border rounded-full"
-      ></div>
+      <Modified v-if="modified && !isMenuOpening"></Modified>
     </div>
     <div
       class="top-20 dark:border-slate-700 dark:bg-slate-800 rounded-xl shadow-slate-900/5 dark:shadow-black/20 border-slate-100 xl:hidden absolute right-0 z-10 flex flex-col items-center px-4 py-2 space-y-1 transition-colors bg-white border"
       :class="isMenuOpening ? 'flex' : 'hidden'"
     >
       <div v-for="(button, index) in HeaderButtonOptions" :key="index" class="space-y-1">
-        <div
-          v-if="button.title == '保存' && modified"
-          class="animate-pulse top-4 left-5 border-amber-400 bg-amber-400/60 absolute z-20 w-4 h-4 border rounded-full"
-        ></div>
+        <Modified v-if="button.title == '保存' && modified" class="top-4 left-5"></Modified>
         <HeaderButton
           :title="button.title"
           :icon="button.icon"
