@@ -132,15 +132,14 @@ const HeaderButtonOptions = reactive<HeaderButtonProps[]>([
         ></HeaderButton
       ></ButtonPopover>
     </div>
-    <div class="relative">
+    <div class="relative xl:hidden" >
       <HeaderButton
         icon="ph-list-dashes"
         title="菜单"
         :action="toggleMenu"
         :showTitle="false"
-        class="xl:hidden"
       ></HeaderButton>
-      <Modified v-if="modified && !isMenuOpening"></Modified>
+      <Modified v-if="modified && !isMenuOpening" ></Modified>
     </div>
     <div
       class="top-20 dark:border-slate-700 dark:bg-slate-800 rounded-xl shadow-slate-900/5 dark:shadow-black/20 border-slate-100 xl:hidden absolute right-0 z-10 flex flex-col items-center px-4 py-2 space-y-1 transition-colors bg-white border"

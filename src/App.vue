@@ -336,7 +336,7 @@ const openMessenger: IOpenMessenger = (data) => {
   }, 1000)
 }
 
-onMounted(() => openMessenger({ status: true, info: '妙！' }))
+onMounted(() => setTimeout(() => openMessenger({ info: 'Hi~', status: true }), 200))
 </script>
 
 <template>
