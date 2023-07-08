@@ -2,21 +2,12 @@
 <script setup lang="ts">
 import type { IAvatar } from '@/types/avatar'
 import type { IUpdateId } from '@/types/updateId'
-import { ref, toRefs, watch, type PropType } from 'vue'
+import { toRefs, watch } from 'vue'
 import Avatar from './Avatar.vue'
 
-const props = defineProps({
-  editingAvatar: {
-    required: true,
-    type: Object as PropType<IAvatar>
-  },
-  updateId: {
-    type: Function as PropType<IUpdateId>,
-    required: true
-  }
-})
+const props = defineProps<{ editingAvatar: IAvatar; updateId: IUpdateId }>()
 
-const id = ref(props.editingAvatar.id)
+const { id } = toRefs(props.editingAvatar)
 
 watch(
   () => props.editingAvatar.id,

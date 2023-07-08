@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed, inject, ref, type PropType, reactive } from 'vue'
+import { computed, inject, ref, reactive } from 'vue'
 
 import type { IAvatar } from '@/types/avatar'
 import { THEME } from '@/types/theme'
@@ -13,17 +13,14 @@ import Modified from '@/components/Modified.vue'
 import HeaderButton from './HeaderButton.vue'
 import Divider from './Divider.vue'
 import Avatar from './Avatar.vue'
-const props = defineProps({
-  editingAvatar: { type: Object as PropType<IAvatar>, required: true },
-  saveAvatar: {
-    type: Function,
-    required: true
-  },
-  deleteAvatar: { type: Function, required: true },
-  createAvatar: { type: Function, required: true },
-  modified: { type: Boolean, required: true },
-  openMessenger: { type: Function, required: true }
-})
+const props = defineProps<{
+  editingAvatar: IAvatar
+  saveAvatar: Function
+  deleteAvatar: Function
+  createAvatar: Function
+  modified: boolean
+  openMessenger: Function
+}>()
 
 const logoColor = computed(() => {
   return {

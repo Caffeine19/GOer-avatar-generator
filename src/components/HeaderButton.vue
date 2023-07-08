@@ -1,13 +1,11 @@
-<script lang="ts">
+<script setup lang="ts">
 export type HeaderButtonProps = {
   title: string
   showTitle?: boolean
   action: Function
   icon: string
 }
-</script>
 
-<script setup lang="ts">
 withDefaults(defineProps<HeaderButtonProps>(), { showTitle: true })
 </script>
 <template>

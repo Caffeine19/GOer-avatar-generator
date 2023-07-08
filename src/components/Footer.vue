@@ -2,22 +2,8 @@
 <script setup lang="ts">
 import Avatar from './Avatar.vue'
 import type { IAvatar } from '@/types/avatar'
-import type { PropType } from 'vue'
 
-defineProps({
-  avatarList: {
-    type: Array as PropType<IAvatar[]>,
-    required: true
-  },
-  pickAvatar: {
-    type: Function,
-    required: true
-  },
-  editingAvatarId: {
-    type: String,
-    required: true
-  }
-})
+defineProps<{ avatarList: IAvatar[]; pickAvatar: Function; editingAvatarId: string }>()
 </script>
 <template>
   <div
