@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed, type PropType } from 'vue'
+import { computed } from 'vue'
 
 import ColorSelector from './ColorSelector.vue'
 import Slider from './Slider.vue'
@@ -14,17 +14,17 @@ import type { IUpdateRadius } from '@/types/updateRadius'
 import type { IUpdateEffect } from '@/types/updateEffect'
 import type { IUpdateEyes } from '@/types/updateEyes'
 
-const props = defineProps({
-  editingAvatar: { type: Object as PropType<IAvatar>, required: true },
-  updateColor: { type: Function as PropType<IUpdateColor>, required: true },
-  updateRadius: { type: Function as PropType<IUpdateRadius>, required: true },
-  updateEffect: { type: Function as PropType<IUpdateEffect>, required: true },
-  updateEyes: { type: Function as PropType<IUpdateEyes>, required: true },
+const props = defineProps<{
+  editingAvatar: IAvatar
+  updateColor: IUpdateColor
+  updateRadius: IUpdateRadius
+  updateEffect: IUpdateEffect
+  updateEyes: IUpdateEyes
 
-  isMobileDevice: { type: Boolean, required: true },
-  isEditorOpening: { type: Boolean, required: true },
-  toggleEditor: { type: Function, required: true }
-})
+  isMobileDevice: boolean
+  isEditorOpening: boolean
+  toggleEditor: Function
+}>()
 
 const code = computed(() => {
   const c = `{

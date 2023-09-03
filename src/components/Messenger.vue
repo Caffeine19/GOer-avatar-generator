@@ -5,11 +5,11 @@ import { themeKey } from '@/symbols/theme'
 import type { IColor } from '@/types/avatar'
 import type { MessengerOption } from '@/types/messenger'
 import { THEME } from '@/types/theme'
-import { computed, inject, ref, type PropType } from 'vue'
+import { computed, inject, ref } from 'vue'
 
-const props = defineProps({
-  color: { type: Object as PropType<IColor>, required: true }
-})
+const props = defineProps<{
+  color: IColor
+}>()
 
 const messengerOption = inject('messengerOption') as MessengerOption
 

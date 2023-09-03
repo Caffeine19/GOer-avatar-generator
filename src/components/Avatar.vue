@@ -1,17 +1,13 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import type { IColor, IEffect, IEyes } from '@/types/avatar'
-import type { PropType } from 'vue'
 
-defineProps({
-  color: { type: Object as PropType<IColor> },
-  effect: { type: Object as PropType<IEffect> },
-  radius: { type: Number },
-  eyes: {
-    type: Object as PropType<IEyes>
-  }
-})
-
+defineProps<{
+  color?: IColor
+  effect?: IEffect
+  radius?: number
+  eyes?: IEyes
+}>()
 const clipPathId =
   'clip' + (Math.random() * 100).toFixed(0) + '_' + (Math.random() * 100).toFixed(0)
 const filterId =

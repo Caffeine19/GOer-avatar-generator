@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed, inject, ref, type PropType, reactive } from 'vue'
+import { computed, inject, ref, reactive } from 'vue'
 
 import type { IAvatar } from '@/types/avatar'
 import { THEME } from '@/types/theme'
@@ -13,17 +13,14 @@ import Modified from '@/components/Modified.vue'
 import HeaderButton from './HeaderButton.vue'
 import Divider from './Divider.vue'
 import Avatar from './Avatar.vue'
-const props = defineProps({
-  editingAvatar: { type: Object as PropType<IAvatar>, required: true },
-  saveAvatar: {
-    type: Function,
-    required: true
-  },
-  deleteAvatar: { type: Function, required: true },
-  createAvatar: { type: Function, required: true },
-  modified: { type: Boolean, required: true },
-  openMessenger: { type: Function, required: true }
-})
+const props = defineProps<{
+  editingAvatar: IAvatar
+  saveAvatar: Function
+  deleteAvatar: Function
+  createAvatar: Function
+  modified: boolean
+  openMessenger: Function
+}>()
 
 const logoColor = computed(() => {
   return {
@@ -112,15 +109,16 @@ const HeaderButtonOptions = reactive<HeaderButtonProps[]>([
         :key="index"
         class="relative flex items-stretch space-x-1"
       >
-        <Modified v-if="button.title == '保存' && modified"></Modified>
+        <Modified v-if="button.title == '保存' && modified" class="top-2 left-2"></Modified>
         <ButtonPopover :content="button.title">
           <HeaderButton
             :title="button.title"
             :icon="button.icon"
             :action="button.action"
             :showTitle="false"
-          ></HeaderButton
-        ></ButtonPopover>
+          >
+          </HeaderButton>
+        </ButtonPopover>
         <Divider direction="vertical" percent="h-3/5" />
       </div>
       <ButtonPopover :content="theme == THEME.LIGHT ? '夜~' : '日！'">
@@ -129,17 +127,17 @@ const HeaderButtonOptions = reactive<HeaderButtonProps[]>([
           :title="theme == THEME.LIGHT ? '夜~' : '日！'"
           :action="toggleTheme"
           :showTitle="false"
-        ></HeaderButton
-      ></ButtonPopover>
+        ></HeaderButton>
+      </ButtonPopover>
     </div>
-    <div class="relative xl:hidden" >
+    <div class="xl:hidden relative">
       <HeaderButton
         icon="ph-list-dashes"
         title="菜单"
         :action="toggleMenu"
         :showTitle="false"
       ></HeaderButton>
-      <Modified v-if="modified && !isMenuOpening" ></Modified>
+      <Modified v-if="modified && !isMenuOpening" class="top-1 left-1"></Modified>
     </div>
     <div
       class="top-20 dark:border-slate-700 dark:bg-slate-800 rounded-xl shadow-slate-900/5 dark:shadow-black/20 border-slate-100 xl:hidden absolute right-0 z-10 flex flex-col items-center px-4 py-2 space-y-1 transition-colors bg-white border"
