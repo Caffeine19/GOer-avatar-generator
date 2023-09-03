@@ -37,3 +37,7 @@
 - vue3
 - tailwind.css
 - TypeScript
+
+## Todo
+
+- rewrite Header.vue with defineProps
